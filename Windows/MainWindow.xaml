@@ -1,0 +1,36 @@
+﻿<Window x:Class="MedicalCenter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MedicalCenter"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"       
+        
+        Title="Авторизация" Height="399" Width="474" WindowStyle="SingleBorderWindow">
+    <Grid Margin="0,0,0,-6">
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#ccb6e3" Offset="0.0"/>
+                <GradientStop Color="#ac7cde" Offset="0.5"/>
+                <GradientStop Color="#8a34e3" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Border Margin="54,44,46,30" Background="White" CornerRadius="25">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="50" Color="Black" ShadowDepth="0"/>
+            </Border.Effect>
+            <StackPanel Margin="0,0,0,10">
+                <Label Content="Авторизация" Width="206" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="22" FontFamily="Arial" Margin="10"/>
+                <Label Content="Логин:&#xA;" Width="162" Height="26" FlowDirection="LeftToRight" Margin="1" />
+                <TextBox x:Name="password" TextWrapping="NoWrap" Width="168" BorderBrush="Black" Height="32" Margin="3" />
+                <Label Content="Пароль:" RenderTransformOrigin="0.474,0.572" Width="162" Margin="1" />
+                <TextBox x:Name="login" TextWrapping="NoWrap" Width="168" BorderBrush="Black" Height="32" Margin="3"/>
+                <Button x:Name="autorize" Content="Войти" Width="114" Height="32" Click="autorize_Click" Margin="10"/>
+                <Button x:Name="registration" Content="Регистрация нового пользователя" Height="36" Width="278" Margin="10" Style="{DynamicResource MaterialDesignFlatButton}"/>
+            </StackPanel>
+        </Border>
+
+
+    </Grid>
+</Window>
