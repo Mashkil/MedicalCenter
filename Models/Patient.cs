@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 
 
 namespace MedicalCenter.Models
 {
-    public class Patient
+    internal class Patient
     {
         public int Id { get; set; }
         public string Fitstname { get; set; }
@@ -12,7 +13,7 @@ namespace MedicalCenter.Models
         public int? Age { get; set; }
         public string Phone { get; set; }
         public string Chronic_deseases { get; set; }
-
-
+        
+        public virtual ICollection<Doctor> Doctors { get; set; }
     }
 }
