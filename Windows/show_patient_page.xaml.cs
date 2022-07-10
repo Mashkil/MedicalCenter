@@ -13,23 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MedicalCenter
+namespace MedicalCenter.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для show_patient_page.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class show_patient_page : Page
     {
-        public MainWindow()
+        public show_patient_page()
         {
             InitializeComponent();
-        }
-
-        private void autorize_Click(object sender, RoutedEventArgs e)
-        {
-            Windows.change_patient change_Patient = new Windows.change_patient();
-            change_Patient.Show();
-            Hide();
         }
     }
 }

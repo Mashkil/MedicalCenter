@@ -14,6 +14,7 @@ namespace MedicalCenter.Models
         public int Expirience { get; set; }
         public string Education { get; set; }
         public string Position { get; set; }
+
         public virtual ICollection<Patient> Patients { get; set; }
     }
 }
