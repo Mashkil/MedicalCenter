@@ -71,6 +71,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Date.cs" />
+    <Compile Include="Models\Time.cs" />
     <Compile Include="Windows\show_patient_page.xaml.cs">
       <DependentUpon>show_patient_page.xaml</DependentUpon>
     </Compile>

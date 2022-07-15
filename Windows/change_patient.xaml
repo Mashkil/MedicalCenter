@@ -22,7 +22,7 @@
             Width="77"                
             Height="22" Background="{x:Null}" Foreground="#FF673AB7" HorizontalAlignment="Center"/>
         </StackPanel>
-        <Frame Source="show_patient_page.xaml" Grid.ColumnSpan="2" Margin="212,0,10,0"/>
+        <Frame Grid.Column="1" Source="show_patient_page.xaml" Margin="0,0,10,0" />
 
     </Grid>
 
