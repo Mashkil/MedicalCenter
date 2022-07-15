@@ -11,17 +11,17 @@ namespace MedicalCenter
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Doctors
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Doctors()
         {
             this.Time = new HashSet<Time>();
-            this.Visits = new HashSet<Visits>();
-        }
-    
-        public int Id { get; set; }
+            this.Visits = new HashSet<Visits>();      
+        }        
+        
+        public int Id { get; set; }   
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public string Patronymic { get; set; }
