@@ -6,29 +6,39 @@
         xmlns:local="clr-namespace:MedicalCenter.Windows"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Добавление пользователя" Height="450" Width="500">
+        Title="Добавление врача" Height="536" Width="500">
     <Grid>
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#ccb6e3" Offset="0.0"/>
-                <GradientStop Color="#ac7cde" Offset="0.5"/>
-                <GradientStop Color="#8a34e3" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
-        <Border Margin="45,45,45,45" Background="White" CornerRadius="25" Grid.ColumnSpan="2">
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="50" Color="Black" ShadowDepth="0"/>
-            </Border.Effect>
-            <StackPanel Margin="30">
-                <TextBox TextWrapping="Wrap" Text="TextBox" Width="120"/>
-                <TextBox TextWrapping="Wrap" Text="TextBox" Width="120"/>
-                <TextBox TextWrapping="Wrap" Text="TextBox" Width="120"/>
-                <ComboBox Width="120"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>        
+            <StackPanel Grid.Column="0" >
+                
+            <Label Content="Имя" Margin="0,10,5,10" Height="25"/>
+            <Label Content="Фамилия" Margin="0,10,5,10" Height="25"/>
+            <Label Content="Отчество" Margin="0,10,5,10" Height="25"/>
+            <Label Content="Возраст" Margin="0,10,5,10" Height="25"/>
+            <Label Content="Заработная плата" Margin="0,10,5,10" Height="25"/>
+            <Label Content="Стаж работы" Margin="0,10,5,10" Height="25"/>
+            <Label Content="Образование" Margin="0,10,5,10" Height="25"/>
+            <Label Content="Должность" Margin="0,10,5,10" Height="25"/>
+            <Label Content="Логин" Margin="0,10,5,10" Height="25"/>
+            <Label Content="Пароль" Margin="0,10,5,10" Height="25"/>
 
-
-            </StackPanel>
-
-
-        </Border>
+        </StackPanel>
+        
+        <StackPanel Grid.Column="1">
+            <TextBox x:Name="name" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
+            <TextBox x:Name="surname" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
+            <TextBox x:Name="patronimyc" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
+            <TextBox x:Name="age" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
+            <TextBox x:Name="salary" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
+            <TextBox x:Name="expirience" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
+            <TextBox x:Name="education" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
+            <TextBox x:Name="position" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
+            <TextBox x:Name="login" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
+            <TextBox x:Name="password" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
+            <Button x:Name="save" Content="Добавить пользователя" Margin="0,10,5,10" Width="200" Background="{x:Null}" Foreground="#FF673AB7"/>
+        </StackPanel>
     </Grid>
 </Window>

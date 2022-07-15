@@ -112,6 +112,9 @@
     <Compile Include="Windows\Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\registration_admin.xaml.cs">
+      <DependentUpon>registration_admin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\show_patient_page.xaml.cs">
       <DependentUpon>show_patient_page.xaml</DependentUpon>
     </Compile>
@@ -152,6 +155,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Windows\Registration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\registration_admin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

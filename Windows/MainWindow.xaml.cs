@@ -30,7 +30,7 @@ namespace MedicalCenter
             //Windows.change_patient change_Patient = new Windows.change_patient();
             //change_Patient.Show();
             //Hide();
-            Windows.Type_of_user type = new Windows.Type_of_user();
+            Windows.Registration type = new Windows.Registration();
             type.Show();
             Hide();
         }
