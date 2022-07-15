@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bb2afa9a097649acb9f2593d4b30833c" Name="Diagram1">
+        <EntityTypeShape EntityType="medcentrModel.Date" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="medcentrModel.Doctors" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="medcentrModel.Logins" Width="1.5" PointX="9.375" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="medcentrModel.Passwords" Width="1.5" PointX="6.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="medcentrModel.Patients" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="medcentrModel.Time" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="medcentrModel.Visits" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="medcentrModel.FK_Time_Date" ManuallyRouted="false" />
+        <AssociationConnector Association="medcentrModel.FK_Time_Doctors" ManuallyRouted="false" />
+        <AssociationConnector Association="medcentrModel.FK_Visits_Doctors" ManuallyRouted="false" />
+        <AssociationConnector Association="medcentrModel.FK_Logins_Passwords" ManuallyRouted="false" />
+        <AssociationConnector Association="medcentrModel.FK_Time_Patients" ManuallyRouted="false" />
+        <AssociationConnector Association="medcentrModel.FK_Visits_Patients" ManuallyRouted="false" />
+        <AssociationConnector Association="medcentrModel.FK_Time_Visits" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
