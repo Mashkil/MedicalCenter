@@ -25,15 +25,15 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1">
-            <TextBox x:Name="name_admin" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
-            <TextBox x:Name="surname_admin" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
-            <TextBox x:Name="patronimyc_admin" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
-            <TextBox x:Name="age_admin" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
-            <TextBox x:Name="salary_admin" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
-            <TextBox x:Name="education_admin" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
+            <TextBox x:Name="name" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
+            <TextBox x:Name="surname" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
+            <TextBox x:Name="patronimyc" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
+            <TextBox x:Name="age" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
+            <TextBox x:Name="salary" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
+            <TextBox x:Name="education" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
             <TextBox x:Name="login" TextWrapping="Wrap"  Width="150" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
             <TextBox x:Name="password" TextWrapping="Wrap"  Width="150" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
-            <Button x:Name="save" Content="Добавить пользователя" Margin="0,15,5,10" Width="200" Background="{x:Null}" Foreground="#FF673AB7"/>
+            <Button x:Name="save" Content="Добавить пользователя" Margin="0,15,5,10" Width="200" Background="{x:Null}" Foreground="#FF673AB7" Click="save_Click"/>
         </StackPanel>
     </Grid>
 </Window>
