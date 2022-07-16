@@ -16,7 +16,7 @@ namespace MedicalCenter.Windows
         private void save_Click(object sender, RoutedEventArgs e)
         {
             bool isInt = int.TryParse(age.Text, out int age1);
-
+            bool isInt2 = int.TryParse(expirience.Text, out int age2);
             if (name.Text.Length == 0)
                 MessageBox.Show($"Введите имя","Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             else if(surname.Text.Length == 0)
@@ -39,6 +39,8 @@ namespace MedicalCenter.Windows
                 MessageBox.Show($"Пароль должен состоять из 5х и более символов", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             else if (!isInt)
                 MessageBox.Show($"В поле Возраст введены неккоректные данные", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (!isInt2)
+                MessageBox.Show($"В поле Опыт работы введены неккоректные данные", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
 
             else
             
