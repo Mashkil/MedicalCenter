@@ -10,8 +10,8 @@
         <StackPanel>
         <Label Content="Выберите тип пользователя" HorizontalAlignment="Center" Margin="0,33,0,10" VerticalAlignment="Top" Width="309" 
                HorizontalContentAlignment="Center" FontSize="20" />
-            <Button x:Name="registr_admin" Content="Администратор" Background="{x:Null}" Foreground="#FF673AB7" Width="167" Margin="20" FontSize="17" HorizontalAlignment="Center" Height="30" />
-            <Button x:Name="registr_doctor" Content="Врач" Background="{x:Null}" Foreground="#FF673AB7" Width="167" Margin="10" FontSize="17" HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" />
+            <Button x:Name="registr_admin" Content="Администратор" Background="{x:Null}" Foreground="#FF673AB7" Width="167" Margin="20" FontSize="17" HorizontalAlignment="Center" Height="30" Click="registr_admin_Click" />
+            <Button x:Name="registr_doctor" Content="Врач" Background="{x:Null}" Foreground="#FF673AB7" Width="167" Margin="10" FontSize="17" HorizontalAlignment="Center" VerticalAlignment="Top" Height="30" Click="registr_doctor_Click" />
 
         </StackPanel>
     </Grid>

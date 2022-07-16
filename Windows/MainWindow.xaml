@@ -27,7 +27,7 @@
                 <Label Content="Пароль:" RenderTransformOrigin="0.474,0.572" Width="162" Margin="1" />
                 <TextBox x:Name="login" TextWrapping="NoWrap" Width="168" BorderBrush="Black" Height="32" Margin="3"/>
                 <Button x:Name="autorize" Content="Войти" Width="114" Height="32" Click="autorize_Click" Margin="10"/>
-                <Button x:Name="registration" Content="Регистрация нового пользователя" Height="36" Width="278" Margin="10" Style="{DynamicResource MaterialDesignFlatButton}"/>
+                <Button x:Name="registration" Content="Регистрация нового пользователя" Height="36" Width="278" Margin="10" Style="{DynamicResource MaterialDesignFlatButton}" Click="registration_Click"/>
             </StackPanel>
         </Border>
 

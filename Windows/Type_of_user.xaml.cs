@@ -14,14 +14,26 @@ using System.Windows.Shapes;
 
 namespace MedicalCenter.Windows
 {
-    /// <summary>
-    /// Логика взаимодействия для Type_of_user.xaml
-    /// </summary>
     public partial class Type_of_user : Window
     {
         public Type_of_user()
         {
             InitializeComponent();
+        }
+
+        private void registr_admin_Click(object sender, RoutedEventArgs e)
+        {
+            Windows.registration_admin registration_Admin = new Windows.registration_admin();
+            registration_Admin.Show();
+            this.Hide();
+
+        }
+
+        private void registr_doctor_Click(object sender, RoutedEventArgs e)
+        {
+            Windows.Registration registration = new Windows.Registration();
+            registration.Show();
+            this.Hide();
         }
     }
 }

@@ -30,9 +30,16 @@ namespace MedicalCenter
             //Windows.change_patient change_Patient = new Windows.change_patient();
             //change_Patient.Show();
             //Hide();
-            Windows.about_doctors type = new Windows.about_doctors();
+            admin type = new admin();
             type.Show();
             Hide();
+        }
+
+        private void registration_Click(object sender, RoutedEventArgs e)
+        {
+            Windows.Type_of_user type_Of_User = new Windows.Type_of_user();
+            type_Of_User.Show();
+            this.Close();
         }
     }
 }

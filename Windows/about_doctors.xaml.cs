@@ -1,9 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 
 namespace MedicalCenter.Windows
 {
@@ -21,9 +30,8 @@ namespace MedicalCenter.Windows
             from doc in db.Doctors            
             orderby doc.Lastname            
             select new { doc.Firstname, doc.Lastname, doc.Patronymic, doc.Age, doc.Salary, doc.Experience, 
-                doc.Education, doc.Position };
-            
-            Grid.ItemsSource = query.ToList();            
+                doc.Education, doc.Position };            
+            Grid.ItemsSource = query.ToList();      
             
         }
 
@@ -47,5 +55,6 @@ namespace MedicalCenter.Windows
             if (e.PropertyName.StartsWith("Position"))
                 e.Column.Header = "Должность";
         }
+
     }
 }
