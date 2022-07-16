@@ -5,6 +5,18 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Хранилище medcentrModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admins">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Patronimyc" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Salary" Type="money" Nullable="false" />
+          <Property Name="Education" Type="nvarchar" MaxLength="2000" Nullable="false" />
+        </EntityType>
         <EntityType Name="Date">
           <Key>
             <PropertyRef Name="Id" />
@@ -12,6 +24,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
           <Property Name="Type_of_day" Type="nvarchar" MaxLength="11" />
+          <Property Name="adminId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Doctors">
           <Key>
@@ -77,6 +90,18 @@
           <Property Name="Complaint" Type="nvarchar(max)" />
           <Property Name="Therapy" Type="nvarchar(max)" />
         </EntityType>
+        <Association Name="FK_Date_Admins">
+          <End Role="Admins" Type="Self.Admins" Multiplicity="1" />
+          <End Role="Date" Type="Self.Date" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admins">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Date">
+              <PropertyRef Name="adminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Logins_Passwords">
           <End Role="Passwords" Type="Self.Passwords" Multiplicity="1" />
           <End Role="Logins" Type="Self.Logins" Multiplicity="*" />
@@ -162,6 +187,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище medcentrModelContainer">
+          <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Date" EntityType="Self.Date" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Doctors" EntityType="Self.Doctors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Logins" EntityType="Self.Logins" Schema="dbo" store:Type="Tables" />
@@ -169,6 +195,10 @@
           <EntitySet Name="Patients" EntityType="Self.Patients" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Time" EntityType="Self.Time" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Visits" EntityType="Self.Visits" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Date_Admins" Association="Self.FK_Date_Admins">
+            <End Role="Admins" EntitySet="Admins" />
+            <End Role="Date" EntitySet="Date" />
+          </AssociationSet>
           <AssociationSet Name="FK_Logins_Passwords" Association="Self.FK_Logins_Passwords">
             <End Role="Passwords" EntitySet="Passwords" />
             <End Role="Logins" EntitySet="Logins" />
@@ -203,6 +233,19 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="medcentrModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admins">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Firstname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Lastname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronimyc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Salary" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Education" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Date" Relationship="Self.FK_Date_Admins" FromRole="Admins" ToRole="Date" />
+        </EntityType>
         <EntityType Name="Date">
           <Key>
             <PropertyRef Name="Id" />
@@ -210,6 +253,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Date1" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Type_of_day" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="adminId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Admins" Relationship="Self.FK_Date_Admins" FromRole="Date" ToRole="Admins" />
           <NavigationProperty Name="Time" Relationship="Self.FK_Time_Date" FromRole="Date" ToRole="Time" />
         </EntityType>
         <EntityType Name="Doctors">
@@ -289,6 +334,18 @@
           <NavigationProperty Name="Patients" Relationship="Self.FK_Visits_Patients" FromRole="Visits" ToRole="Patients" />
           <NavigationProperty Name="Time" Relationship="Self.FK_Time_Visits" FromRole="Visits" ToRole="Time" />
         </EntityType>
+        <Association Name="FK_Date_Admins">
+          <End Role="Admins" Type="Self.Admins" Multiplicity="1" />
+          <End Role="Date" Type="Self.Date" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admins">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Date">
+              <PropertyRef Name="adminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Time_Date">
           <End Role="Date" Type="Self.Date" Multiplicity="1" />
           <End Role="Time" Type="Self.Time" Multiplicity="*" />
@@ -374,6 +431,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="medcentrDB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admins" />
           <EntitySet Name="Date" EntityType="Self.Date" />
           <EntitySet Name="Doctors" EntityType="Self.Doctors" />
           <EntitySet Name="Logins" EntityType="Self.Logins" />
@@ -381,6 +439,10 @@
           <EntitySet Name="Patients" EntityType="Self.Patients" />
           <EntitySet Name="Time" EntityType="Self.Time" />
           <EntitySet Name="Visits" EntityType="Self.Visits" />
+          <AssociationSet Name="FK_Date_Admins" Association="Self.FK_Date_Admins">
+            <End Role="Admins" EntitySet="Admins" />
+            <End Role="Date" EntitySet="Date" />
+          </AssociationSet>
           <AssociationSet Name="FK_Time_Date" Association="Self.FK_Time_Date">
             <End Role="Date" EntitySet="Date" />
             <End Role="Time" EntitySet="Time" />
@@ -416,12 +478,26 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище medcentrModelContainer" CdmEntityContainer="medcentrDB">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="medcentrModel.Admins">
+              <MappingFragment StoreEntitySet="Admins">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Patronimyc" ColumnName="Patronimyc" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Education" ColumnName="Education" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Date">
             <EntityTypeMapping TypeName="medcentrModel.Date">
               <MappingFragment StoreEntitySet="Date">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Date1" ColumnName="Date" />
                 <ScalarProperty Name="Type_of_day" ColumnName="Type_of_day" />
+                <ScalarProperty Name="adminId" ColumnName="adminId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -12,21 +12,23 @@ namespace MedicalCenter
     using System;
     using System.Collections.Generic;
     
-    public partial class Date
+    public partial class Admins
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Date()
+        public Admins()
         {
-            this.Time = new HashSet<Time>();
+            this.Date = new HashSet<Date>();
         }
     
         public int Id { get; set; }
-        public System.DateTime Date1 { get; set; }
-        public string Type_of_day { get; set; }
-        public int adminId { get; set; }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
+        public string Patronimyc { get; set; }
+        public int Age { get; set; }
+        public decimal Salary { get; set; }
+        public string Education { get; set; }
     
-        public virtual Admins Admins { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Time> Time { get; set; }
+        public virtual ICollection<Date> Date { get; set; }
     }
 }

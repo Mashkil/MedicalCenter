@@ -4,14 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bb2afa9a097649acb9f2593d4b30833c" Name="Diagram1">
+      <Diagram DiagramId="a438ec71c42e4ff189a2f6f8332ac9a8" Name="Diagram1">
+        <EntityTypeShape EntityType="medcentrModel.Admins" Width="1.5" PointX="3.75" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="medcentrModel.Date" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="medcentrModel.Doctors" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="medcentrModel.Logins" Width="1.5" PointX="9.375" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="medcentrModel.Passwords" Width="1.5" PointX="6.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="medcentrModel.Patients" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="medcentrModel.Time" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="medcentrModel.Visits" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="medcentrModel.Doctors" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="medcentrModel.Logins" Width="1.5" PointX="9.875" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="medcentrModel.Passwords" Width="1.5" PointX="7.625" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="medcentrModel.Patients" Width="1.5" PointX="0.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="medcentrModel.Time" Width="1.5" PointX="3.375" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="medcentrModel.Visits" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
+        <AssociationConnector Association="medcentrModel.FK_Date_Admins" ManuallyRouted="false" />
         <AssociationConnector Association="medcentrModel.FK_Time_Date" ManuallyRouted="false" />
         <AssociationConnector Association="medcentrModel.FK_Time_Doctors" ManuallyRouted="false" />
         <AssociationConnector Association="medcentrModel.FK_Visits_Doctors" ManuallyRouted="false" />
