@@ -16,7 +16,7 @@ namespace MedicalCenter.Windows
 {
     public partial class create_new_pat : Window
     {
-        bool button_no = false;
+        bool dont_open_admin = false;
         public create_new_pat()
         {
             InitializeComponent();
@@ -54,6 +54,7 @@ namespace MedicalCenter.Windows
                         if (MessageBox.Show($"Карта пациента {name.Text} успешно создана\nОткрыть окно записи?", "",
                             MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                         {
+                            dont_open_admin = true;
                             if (App.Current.MainWindow != null)
                                 App.Current.MainWindow.Close();
                             Windows.add_record add_Record = new add_record();
@@ -62,7 +63,7 @@ namespace MedicalCenter.Windows
                         }
                         else
                         {
-                            button_no = true;
+                            dont_open_admin = true;
                             Windows.create_new_pat create_New_Pat = new Windows.create_new_pat();
                             create_New_Pat.Show();
                             this.Close();                            
@@ -77,7 +78,7 @@ namespace MedicalCenter.Windows
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (!button_no)
+            if (!dont_open_admin)
             {
                 admin admin = new admin();
                 admin.Show();

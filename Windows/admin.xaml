@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MedicalCenter"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Medpro" Height="450" Width="542">
+        Title="Medpro" Height="450" Width="542" WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel Margin="20">
             <Button x:Name="add_record" Content="Добавить запись +" Margin="35" FontSize="30" Style="{DynamicResource MaterialDesignFlatButton}" Height="46" Click="add_record_Click"/>
