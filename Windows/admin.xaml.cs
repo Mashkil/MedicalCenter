@@ -17,7 +17,7 @@ namespace MedicalCenter
 
         private void adout_doctors_Click(object sender, RoutedEventArgs e)
         {
-            //this.Hide();
+            
             Windows.about_doctors about_Doctors = new Windows.about_doctors();
             about_Doctors.ShowDialog();
         }
@@ -31,6 +31,11 @@ namespace MedicalCenter
         {
             Windows.Show_records show_Records = new Windows.Show_records();
             show_Records.ShowDialog();
+        }
+
+        private void add_record_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

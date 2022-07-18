@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:MedicalCenter.Windows"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Добавление врача" Height="536" Width="500">
+        Title="Добавление врача" MinHeight="540" MinWidth="500" Height="550" Width="510"
+        Closing="Window_Closing"
+        >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -34,7 +36,7 @@
             <TextBox x:Name="age" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
             <TextBox x:Name="salary" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
             <TextBox x:Name="expirience" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
-            <TextBox x:Name="education" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
+            <TextBox x:Name="education" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10"/>
             <TextBox x:Name="position" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
             <TextBox x:Name="login" TextWrapping="Wrap"  Width="150" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
             <TextBox x:Name="password" TextWrapping="Wrap"  Width="150" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>

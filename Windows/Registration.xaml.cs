@@ -73,13 +73,23 @@ namespace MedicalCenter.Windows
 
                     if(MessageBox.Show($"Врач {name.Text} успешно добавлен в систему","", MessageBoxButton.OK, MessageBoxImage.None) == MessageBoxResult.OK)
                     {
-                        
+                        if (App.Current.MainWindow != null)
+                            App.Current.MainWindow.Close();
                         MainWindow main = new MainWindow();
                         main.Show();
                         this.Close();
                     }
                 }
             }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (App.Current.MainWindow != null)
+                App.Current.MainWindow.Close();
+            MainWindow main = new MainWindow();            
+            main.Show();
+            
         }
     }
 }

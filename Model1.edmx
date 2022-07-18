@@ -64,9 +64,10 @@
           <Property Name="Firstname" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Lastname" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Patronymic" Type="nvarchar" MaxLength="30" />
-          <Property Name="Age" Type="int" />
           <Property Name="Phone" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Chronic_deseases" Type="nvarchar" MaxLength="200" />
+          <Property Name="Date_of_birth" Type="date" />
+          <Property Name="Series_and_number_of_pass" Type="nvarchar" MaxLength="12" />
         </EntityType>
         <EntityType Name="Time">
           <Key>
@@ -299,9 +300,10 @@
           <Property Name="Firstname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Lastname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Patronymic" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Age" Type="Int32" />
           <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Chronic_deseases" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Date_of_birth" Type="DateTime" Precision="0" />
+          <Property Name="Series_and_number_of_pass" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Time" Relationship="Self.FK_Time_Patients" FromRole="Patients" ToRole="Time" />
           <NavigationProperty Name="Visits" Relationship="Self.FK_Visits_Patients" FromRole="Patients" ToRole="Visits" />
         </EntityType>
@@ -541,9 +543,10 @@
                 <ScalarProperty Name="Firstname" ColumnName="Firstname" />
                 <ScalarProperty Name="Lastname" ColumnName="Lastname" />
                 <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
-                <ScalarProperty Name="Age" ColumnName="Age" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Chronic_deseases" ColumnName="Chronic_deseases" />
+                <ScalarProperty Name="Date_of_birth" ColumnName="Date_of_birth" />
+                <ScalarProperty Name="Series_and_number_of_pass" ColumnName="Series_and_number_of_pass" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

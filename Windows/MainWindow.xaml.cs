@@ -28,7 +28,7 @@ namespace MedicalCenter
             //Windows.change_patient change_Patient = new Windows.change_patient();
             //change_Patient.Show();
             //Hide();
-            Windows.Show_records type = new Windows.Show_records();
+            Windows.create_new_pat type = new Windows.create_new_pat();
             type.Show();
             Hide();
         }
