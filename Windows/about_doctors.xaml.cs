@@ -16,9 +16,6 @@ using System.Collections.ObjectModel;
 
 namespace MedicalCenter.Windows
 {
-    /// <summary>
-    /// Логика взаимодействия для about_doctors.xaml
-    /// </summary>
     public partial class about_doctors : Window
     {
         public about_doctors()

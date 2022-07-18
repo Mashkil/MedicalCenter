@@ -10,9 +10,9 @@
     <Grid>
         <StackPanel Margin="20">
             <Button x:Name="add_record" Content="Добавить запись +" Margin="35" FontSize="30" Style="{DynamicResource MaterialDesignFlatButton}" Height="46"/>
-            <Button x:Name="change_record" Content="Изменить запись" Margin="30" Width="367" FontSize="20" Height="45"/>
+            <Button x:Name="change_record" Content="Изменить запись" Margin="30" Width="367" FontSize="20" Height="45" Click="change_record_Click"/>
             <Button x:Name="adout_doctors" Content="Информация о врачах" Margin="0 10 0 20" Width="367" FontSize="20" Height="45" Cursor="Hand" Click="adout_doctors_Click"/>
-            <Button x:Name="show_record" Content="Просмотреть запись" Margin="0 20 0 20" Width="367" FontSize="20" Height="45"/>
+            <Button x:Name="show_record" Content="Просмотреть запись" Margin="0 20 0 20" Width="367" FontSize="20" Height="45" Click="show_record_Click"/>
         </StackPanel>
     </Grid>
 </Window>

@@ -15,9 +15,7 @@ using System.Windows.Shapes;
 
 namespace MedicalCenter
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
+
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -30,7 +28,7 @@ namespace MedicalCenter
             //Windows.change_patient change_Patient = new Windows.change_patient();
             //change_Patient.Show();
             //Hide();
-            admin type = new admin();
+            Windows.Show_records type = new Windows.Show_records();
             type.Show();
             Hide();
         }

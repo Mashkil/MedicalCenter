@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Windows;
-using System.Data;
-using System.Linq;
-
 
 namespace MedicalCenter.Windows
 {
@@ -76,9 +73,10 @@ namespace MedicalCenter.Windows
 
                     if(MessageBox.Show($"Врач {name.Text} успешно добавлен в систему","", MessageBoxButton.OK, MessageBoxImage.None) == MessageBoxResult.OK)
                     {
-                        this.Close();
+                        
                         MainWindow main = new MainWindow();
                         main.Show();
+                        this.Close();
                     }
                 }
             }

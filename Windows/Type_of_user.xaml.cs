@@ -25,7 +25,7 @@ namespace MedicalCenter.Windows
         {
             Windows.registration_admin registration_Admin = new Windows.registration_admin();
             registration_Admin.Show();
-            this.Hide();
+            this.Close();
 
         }
 
@@ -33,7 +33,7 @@ namespace MedicalCenter.Windows
         {
             Windows.Registration registration = new Windows.Registration();
             registration.Show();
-            this.Hide();
+            this.Close();
         }
     }
 }

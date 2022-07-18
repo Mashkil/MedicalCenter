@@ -21,5 +21,16 @@ namespace MedicalCenter
             Windows.about_doctors about_Doctors = new Windows.about_doctors();
             about_Doctors.ShowDialog();
         }
+
+        private void change_record_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void show_record_Click(object sender, RoutedEventArgs e)
+        {
+            Windows.Show_records show_Records = new Windows.Show_records();
+            show_Records.ShowDialog();
+        }
     }
 }
