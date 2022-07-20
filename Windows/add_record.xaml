@@ -12,9 +12,8 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
-            <TextBox Text="Введите серию и номер паспорта (без пробелов),остальные поля заполнятся автоматически" TextWrapping="Wrap" 
-                     Width="254" HorizontalAlignment="Left" IsReadOnly="True"
-                     VerticalAlignment="Center" BorderBrush="{x:Null}" FontWeight="Bold" Margin="0,10,0,10" Cursor="Arrow"/>
+            <TextBox Text="Введите серию и номер паспорта (без пробелов), остальные поля заполнятся автоматически" TextWrapping="Wrap" 
+                     Width="293" HorizontalAlignment="Left" IsReadOnly="True" BorderBrush="{x:Null}" FontWeight="Bold" Margin="0,10,0,10" Cursor="Arrow" TextAlignment="Justify"/>
             <TextBox x:Name="serial_and_number" TextWrapping="Wrap" Width="120" HorizontalAlignment="Left" LostFocus="serial_and_number_LostFocus" />
             <Label Content="Имя" FontWeight="Bold" Width="143" HorizontalAlignment="Left" Margin="0,10,0,10"/>
             <TextBox x:Name="name" TextWrapping="Wrap" Width="120" HorizontalAlignment="Left"/>
@@ -24,13 +23,13 @@
             <TextBox x:Name="patronimyc" TextWrapping="Wrap" Width="120" HorizontalAlignment="Left"/>
             <Label Content="Номер телефона" FontWeight="Bold" Width="144" HorizontalAlignment="Left" Margin="0,10,0,10"/>
             <TextBox x:Name="phone_number" TextWrapping="Wrap" Width="120" HorizontalAlignment="Left"/>
-                        
+
         </StackPanel>
         <StackPanel Grid.Column="1">
             <Label Content="Выберите специализацию врача" HorizontalAlignment="Left" FontWeight="Bold" Margin="0,10,0,10"/>
             <ComboBox x:Name="doctors_depart" Width="128" IsEditable="True" HorizontalAlignment="Left" DropDownClosed="doctors_depart_DropDownClosed" GotFocus="doctors_depart_GotFocus"/>
             <Label Content="Выберите врача" HorizontalAlignment="Left" FontWeight="Bold" Margin="0,10,0,10"/>
-            <ComboBox x:Name="doctors" Width="128" IsEditable="True" HorizontalAlignment="Left" >                
+            <ComboBox x:Name="doctors" Width="128" IsEditable="True" HorizontalAlignment="Left" >
             </ComboBox>
             <Label Content="Выберите дату записи" FontWeight="Bold" Width="154" HorizontalAlignment="Left" Margin="0,10,0,10"/>
             <DatePicker x:Name="date_of_record" LostFocus="date_of_record_LostFocus" Width="128" HorizontalAlignment="Left"/>

@@ -1,23 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 
 namespace MedicalCenter.Windows
 {
     public partial class add_record : Window
     {
-        int patient_id;
+        int patient_id, doctor_id;
+        bool date_exist = false;
         public add_record()
         {
             InitializeComponent();
@@ -116,11 +109,13 @@ namespace MedicalCenter.Windows
             {
                 using (medcentrDB db = new medcentrDB())
                 {
+                    date_exist = false;
                     string[] name_and_surname = doctors.Text.Split(' ');  //разделение фио врача на отдельные имя и фамилию
                     var surname_doc = name_and_surname[0];
                     var name_doc = name_and_surname[1];
 
                     Doctors doc = db.Doctors.FirstOrDefault(p => p.Lastname == surname_doc && p.Firstname == name_doc && p.Position == doctors_depart.Text);
+                    doctor_id = doc.Id;
                     var for_date_id = DateTime.Parse(date_of_record.Text);
 
                     #region  Определение свободного времени по дате                    
@@ -128,7 +123,10 @@ namespace MedicalCenter.Windows
                     List<Time> time_for_record = new List<Time>();
 
                     if (date != null)
+                    {
                         time_for_record = db.Time.Where(t => t.DoctorId == doc.Id && t.DateId == date.Id).ToList();
+                        date_exist = true;
+                    }
                     #endregion
 
                     List<string> time_str = new List<string>
@@ -166,9 +164,66 @@ namespace MedicalCenter.Windows
             }
         }
 
-        private void create_record_Click(object sender, RoutedEventArgs e)
+        private void create_record_Click(object sender, RoutedEventArgs e)  //создание записи в таблице время, визиты и/или дата
         {
-
+            try
+            {
+                using (medcentrDB db = new medcentrDB())
+                {
+                    if (date_exist)
+                    {
+                        var for_date_id = DateTime.Parse(date_of_record.Text);
+                        Date date = db.Date.FirstOrDefault(p => p.Date1 == for_date_id);
+                        var new_visit = new Visits()
+                        {
+                            DoctorId = doctor_id,
+                            PatientId = patient_id
+                        };
+                        var new_record = new Time()
+                        {
+                            Time1 = TimeSpan.Parse(time_of_record.Text),
+                            DoctorId = doctor_id,
+                            PatientId = patient_id,
+                            DateId = date.Id,
+                            VisitId = new_visit.Id
+                        };
+                        db.Visits.Add(new_visit);
+                        db.Time.Add(new_record);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        string today = DateTime.Now.DayOfWeek.ToString();
+                        var new_visit = new Visits()
+                        {
+                            DoctorId = doctor_id,
+                            PatientId = patient_id
+                        };
+                        var new_date = new Date()
+                        {
+                            Date1 = DateTime.Parse(date_of_record.Text),
+                            Type_of_day = today,
+                            adminId = 1
+                        };
+                        var new_record = new Time()
+                        {
+                            Time1 = TimeSpan.Parse(time_of_record.Text),
+                            DoctorId = doctor_id,
+                            PatientId = patient_id,
+                            DateId = new_date.Id,
+                            VisitId = new_visit.Id
+                        };
+                        db.Visits.Add(new_visit);
+                        db.Date.Add(new_date);
+                        db.Time.Add(new_record);
+                        db.SaveChanges();
+                    }
+                }
+            }
+            catch (Exception t)
+            {
+                MessageBox.Show($"{t.Message} ", "Ошибка", MessageBoxButton.OK);
+            }
         }
     }
 }
