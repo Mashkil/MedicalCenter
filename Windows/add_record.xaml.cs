@@ -92,7 +92,7 @@ namespace MedicalCenter.Windows
             doctors.Items.Clear();
         }
 
-        private void date_of_record_LostFocus(object sender, RoutedEventArgs e)  // Проверка на выходные дни
+        private void date_of_record_LostFocus(object sender, RoutedEventArgs e)  // Проверка на выходные дни и предыдущие дни
         {
             if (date_of_record.Text != "")
             {
@@ -102,31 +102,38 @@ namespace MedicalCenter.Windows
                     MessageBox.Show("Вы выбрали выходной день", "Ошибка", MessageBoxButton.OK);
                     date_of_record.Text = "";
                 }
+                else if (DateTime.Parse(date_of_record.Text) < DateTime.Now)
+                {
+                    MessageBox.Show("Вы не можете создать запись на предыдущее число", "Ошибка", MessageBoxButton.OK);
+                    date_of_record.Text = "";
+                }
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void time_of_record_GotFocus(object sender, RoutedEventArgs e)
+        private void time_of_record_GotFocus(object sender, RoutedEventArgs e)  // показ времени
         {
             try
             {
                 using (medcentrDB db = new medcentrDB())
                 {
-                    string[] name_and_surname = doctors.Text.Split(' ');
+                    string[] name_and_surname = doctors.Text.Split(' ');  //разделение фио врача на отдельные имя и фамилию
                     var surname_doc = name_and_surname[0];
                     var name_doc = name_and_surname[1];
 
                     Doctors doc = db.Doctors.FirstOrDefault(p => p.Lastname == surname_doc && p.Firstname == name_doc && p.Position == doctors_depart.Text);
+                    var for_date_id = DateTime.Parse(date_of_record.Text);
 
-                    List<Time> time_for_record = db.Time.Where(t => t.DoctorId == doc.Id).ToList();
+                    #region  Определение свободного времени по дате                    
+                    Date date = db.Date.FirstOrDefault(p => p.Date1 == for_date_id);
+                    List<Time> time_for_record = new List<Time>();
+
+                    if (date != null)
+                        time_for_record = db.Time.Where(t => t.DoctorId == doc.Id && t.DateId == date.Id).ToList();
+                    #endregion
 
                     List<string> time_str = new List<string>
                     {
-                            "9:00:00", "09:30:00","10:00:00","10:30:00","11:00:00", "11:30:00", "12:00:00","12:30:00",
+                            "09:00:00", "09:30:00","10:00:00","10:30:00","11:00:00", "11:30:00", "12:00:00","12:30:00",
                             "14:00:00","14:30:00","15:00:00","15:30:00","16:00:00","16:30:00","17:00:00","17:30:00",
                             "18:00:00"
                     };
@@ -135,15 +142,33 @@ namespace MedicalCenter.Windows
                     {
                         time_str2.Add(time.Time1.ToString());
                     }
-
-                    var time_str_result = time_str.Except(time_str2);
-                    time_of_record.ItemsSource = time_str_result;
+                    var time_str_result = time_str.Except(time_str2); //вычисление свободного времени
+                    #region Удаление :00 в каждой строке, для корректного отображения времени
+                    string[] time_str3 = new string[time_str_result.Count()];
+                    int i2 = 0;
+                    foreach (var time in time_str_result)
+                    {
+                        time_str3[i2] = time.ToString();
+                        i2++;
+                    }
+                    for (int i = 0; i < time_str3.Length; i++)
+                    {
+                        string ii = time_str3[i];
+                        time_str3[i] = ii.Remove(5, 3);
+                    }
+                    #endregion
+                    time_of_record.ItemsSource = time_str3;
                 };
             }
             catch (Exception t)
             {
                 MessageBox.Show($"{t.Message} ", "Ошибка", MessageBoxButton.OK);
             }
+        }
+
+        private void create_record_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

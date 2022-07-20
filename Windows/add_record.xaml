@@ -36,8 +36,7 @@
             <DatePicker x:Name="date_of_record" LostFocus="date_of_record_LostFocus" Width="128" HorizontalAlignment="Left"/>
             <Label Content="Выберите время записи" FontWeight="Bold" Width="164" HorizontalAlignment="Left" Margin="0,10,0,10"/>
             <ComboBox x:Name="time_of_record" Width="128" IsEditable="True" HorizontalAlignment="Left" GotFocus="time_of_record_GotFocus"/>
-            <Button x:Name="create_record" Content="Создать запись" Width="171" Margin="0,40,0,30" Background="#FFCFC4E3" Foreground="#DD000000"/>
-            <Button Content="Button" Click="Button_Click"/>
+            <Button x:Name="create_record" Content="Создать запись" Width="171" Margin="0,40,0,30" Background="#FFCFC4E3" Foreground="#DD000000" Click="create_record_Click"/>
         </StackPanel>
     </Grid>
 </Window>
