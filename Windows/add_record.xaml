@@ -5,24 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MedicalCenter.Windows"
         mc:Ignorable="d"
-        Title="Добавить запись" Height="450" Width="621">
+        Title="Добавить запись"  MinHeight="450" MinWidth="615" Height="450" Width="621"
+        Closing="Window_Closing" WindowStartupLocation="CenterScreen"
+        >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
-            <TextBox Text="Введите серию и номер паспорта (без пробелов), остальные поля заполнятся автоматически" TextWrapping="Wrap" 
-                     Width="293" HorizontalAlignment="Left" IsReadOnly="True" BorderBrush="{x:Null}" FontWeight="Bold" Margin="0,10,0,10" Cursor="Arrow" TextAlignment="Justify"/>
-            <TextBox x:Name="serial_and_number" TextWrapping="Wrap" Width="120" HorizontalAlignment="Left" LostFocus="serial_and_number_LostFocus" />
-            <Label Content="Имя" FontWeight="Bold" Width="143" HorizontalAlignment="Left" Margin="0,10,0,10"/>
+            <TextBox Text="Введите номер телефона (+7...), остальные поля заполнятся автоматически" TextWrapping="Wrap" 
+                     Width="293" HorizontalAlignment="Left" IsReadOnly="True" BorderBrush="{x:Null}" FontWeight="Bold" Margin="0,10,0,10" Cursor="Arrow" TextAlignment="Left" FontStretch="Medium"/>
+            <TextBox x:Name="phone_number" TextWrapping="Wrap" Width="120" HorizontalAlignment="Left" LostFocus="phone_number_LostFocus"/>
+            <Label Content="Имя" FontWeight="Bold" Width="143" HorizontalAlignment="Left" Margin="0,10,0,10" Cursor="Arrow"/>
             <TextBox x:Name="name" TextWrapping="Wrap" Width="120" HorizontalAlignment="Left"/>
             <Label Content="Фамилия" FontWeight="Bold" Width="203" HorizontalAlignment="Left" Margin="0,10,0,10"/>
             <TextBox x:Name="surname" TextWrapping="Wrap" Width="120" HorizontalAlignment="Left"/>
             <Label Content="Отчество" FontWeight="Bold" Width="145" HorizontalAlignment="Left" Margin="0,10,0,10"/>
             <TextBox x:Name="patronimyc" TextWrapping="Wrap" Width="120" HorizontalAlignment="Left"/>
-            <Label Content="Номер телефона" FontWeight="Bold" Width="144" HorizontalAlignment="Left" Margin="0,10,0,10"/>
-            <TextBox x:Name="phone_number" TextWrapping="Wrap" Width="120" HorizontalAlignment="Left"/>
+            <Label Content="Дата рождения" FontWeight="Bold" Width="144" HorizontalAlignment="Left" Margin="0,10,0,10"/>
+            <TextBox x:Name="date_of_birth" TextWrapping="Wrap" Width="120" HorizontalAlignment="Left"/>
 
         </StackPanel>
         <StackPanel Grid.Column="1">

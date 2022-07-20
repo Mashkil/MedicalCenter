@@ -3,21 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 
-
-
 namespace MedicalCenter.Windows
 {
     public partial class add_record : Window
     {
         int patient_id, doctor_id;
         bool date_exist = false;
+        bool open_admin = false;
         public add_record()
         {
             InitializeComponent();
             Select_depart();
         }
 
-        public void Select_depart()      //вывод специальностей врачей
+        public void Select_depart()        //вывод специальностей врачей
         {
             try
             {
@@ -36,23 +35,24 @@ namespace MedicalCenter.Windows
             }
         }
 
-        private void serial_and_number_LostFocus(object sender, RoutedEventArgs e)       //автозаполнение полей данных пациента
+        private void phone_number_LostFocus(object sender, RoutedEventArgs e)   //автозаполнение полей данных пациента
         {
             try
             {
                 using (medcentrDB db = new medcentrDB())
                 {
-                    Patients pat = db.Patients.FirstOrDefault(p => p.Series_and_number_of_pass == serial_and_number.Text);
+                    Patients pat = db.Patients.FirstOrDefault(p => p.Phone == phone_number.Text);
                     patient_id = pat.Id;
                     name.Text = pat.Firstname;
                     surname.Text = pat.Lastname;
                     patronimyc.Text = pat.Patronymic;
-                    phone_number.Text = pat.Phone;
+                    DateTime? dd = pat.Date_of_birth;
+                    date_of_birth.Text = dd.Value.ToShortDateString();
                 };
             }
             catch (NullReferenceException)
             {
-                MessageBox.Show("Пациета с такими паспортными данными не существует", "Ошибка", MessageBoxButton.OK);
+                MessageBox.Show("Пациета с таким номером телефона не существует", "Ошибка", MessageBoxButton.OK);
             }
             catch (Exception t)
             {
@@ -164,7 +164,7 @@ namespace MedicalCenter.Windows
             }
         }
 
-        private void create_record_Click(object sender, RoutedEventArgs e)  //создание записи в таблице время, визиты и/или дата
+        private void create_record_Click(object sender, RoutedEventArgs e)  //создание записи в таблице время, визиты и дата
         {
             try
             {
@@ -190,6 +190,24 @@ namespace MedicalCenter.Windows
                         db.Visits.Add(new_visit);
                         db.Time.Add(new_record);
                         db.SaveChanges();
+
+                        if (MessageBox.Show($"Запись успешно создана\nСоздать еще одну запись?", "",
+                            MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                        {
+                            if (App.Current.MainWindow != null)
+                                App.Current.MainWindow.Close();
+                            Windows.add_record add_Record = new add_record();
+                            add_Record.Show();
+                            this.Close();
+                            open_admin = true;
+                        }
+                        else
+                        {
+                            admin Admin = new admin();
+                            Admin.Show();
+                            this.Close();
+                            open_admin = true;
+                        }
                     }
                     else
                     {
@@ -217,12 +235,37 @@ namespace MedicalCenter.Windows
                         db.Date.Add(new_date);
                         db.Time.Add(new_record);
                         db.SaveChanges();
+
+                        if (MessageBox.Show($"Запись успешно создана\nСоздать еще одну запись?", "",
+                            MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                        {
+                            if (App.Current.MainWindow != null)
+                                App.Current.MainWindow.Close();
+                            Windows.add_record add_Record = new add_record();
+                            add_Record.Show();
+                            this.Close();
+                        }
+                        else
+                        {
+                            admin Admin = new admin();
+                            Admin.Show();
+                            this.Close();
+                        }
                     }
                 }
             }
             catch (Exception t)
             {
                 MessageBox.Show($"{t.Message} ", "Ошибка", MessageBoxButton.OK);
+            }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!open_admin)
+            {
+                admin Admin = new admin();
+                Admin.Show();
             }
         }
     }

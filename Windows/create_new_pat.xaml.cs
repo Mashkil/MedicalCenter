@@ -15,15 +15,7 @@ namespace MedicalCenter.Windows
         private void create_pat_Click(object sender, RoutedEventArgs e)
         {
             try
-            {
-                
-                if (!decimal.TryParse(series_and_number.Text, out decimal h))
-                    MessageBox.Show("Серия и номер паспорта могут содержать только числа", "Ошибка",
-                        MessageBoxButton.OK, MessageBoxImage.Error);
-                else if (series_and_number.Text.Length > 10)
-                    MessageBox.Show("Серия и номер паспорта должно состоять из 10 символов", "Ошибка",
-                        MessageBoxButton.OK, MessageBoxImage.Error);
-                else
+            {                
                     using (medcentrDB db = new medcentrDB())
 
                     {
@@ -56,7 +48,7 @@ namespace MedicalCenter.Windows
                             dont_open_admin = true;
                             Windows.create_new_pat create_New_Pat = new Windows.create_new_pat();
                             create_New_Pat.Show();
-                            this.Close();                            
+                            this.Close();
                         }
                     };
             }

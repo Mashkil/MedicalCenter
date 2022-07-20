@@ -13,16 +13,19 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
-            <Label Content="Введите фамилию пациента:" Margin="0 20 20 5"/>
-            <TextBox TextWrapping="Wrap" Width="148" HorizontalAlignment="Left" Margin="0 0 20 20"/>
-            <Label Content="Введите дату записи:" Margin="0 0 20 5" Foreground="#DD000000"/>
-            <TextBox TextWrapping="Wrap" Width="120" HorizontalAlignment="Left" Margin="0 0 20 20"/>
-            <Button x:Name="find_button"
-            Content="Найти" FontSize="10"                 
-            Width="77"                
-            Height="22" Background="{x:Null}" Foreground="#FF673AB7" HorizontalAlignment="Center"/>
+            <Label Content="Введите фамилию пациента:" Margin="0 20 20 5" FontSize="15"/>
+            <TextBox x:Name="surname_pat" TextWrapping="Wrap" Width="148" HorizontalAlignment="Left" Margin="0 0 20 20"/>
+            <Label Content="Введите имя пациента:" Margin="0 0 20 5" FontSize="15"/>
+            <TextBox x:Name="name_pat" TextWrapping="Wrap" Width="148" HorizontalAlignment="Left" Margin="0 0 20 20"/>
+            <Label Content="Введите дату записи:" Margin="0 0 20 5" Foreground="#DD000000" FontSize="15"/>
+            <DatePicker x:Name="data" Margin="0 0 20 20" HorizontalAlignment="Left" Width="148" />
+            <Button x:Name="find_button" Click="find_button_Click"
+            Content="Найти" FontSize="13"                 
+            Width="100"            
+            Height="28" Background="{x:Null}" Foreground="#FF673AB7" HorizontalAlignment="Center"/>
         </StackPanel>
-        <Frame Grid.Column="1" Source="show_patient_page.xaml"/>
+
+        <DataGrid x:Name="grid" Grid.Column="1" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn"/>
     </Grid>
 
 </Window>

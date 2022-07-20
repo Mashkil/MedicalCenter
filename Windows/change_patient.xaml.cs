@@ -14,14 +14,34 @@ using System.Windows.Shapes;
 
 namespace MedicalCenter.Windows
 {
-    /// <summary>
-    /// Логика взаимодействия для change_patient.xaml
-    /// </summary>
+    
     public partial class change_patient : Window
     {
         public change_patient()
         {
             InitializeComponent();
+        }
+
+        private void find_button_Click(object sender, RoutedEventArgs e)
+        {
+            using (medcentrDB db = new medcentrDB())
+            {
+                
+            }
+        }
+
+        private void DataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if (e.PropertyName.StartsWith("Time"))
+                e.Column.Header = "Время";
+            if (e.PropertyName.StartsWith("Lastname_doc"))
+                e.Column.Header = "Фамилия врача";
+            if (e.PropertyName.StartsWith("Lastname_pat"))
+                e.Column.Header = "Фамилия пациента";
+            if (e.PropertyName.StartsWith("Phone_pat"))
+                e.Column.Header = "Номер телефона пациента";
+            if (e.PropertyName.StartsWith("Data"))
+                e.Column.Header = "Дата";
         }
     }
 }
