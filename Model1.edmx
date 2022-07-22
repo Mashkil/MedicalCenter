@@ -25,6 +25,7 @@
           <Property Name="Date" Type="date" Nullable="false" />
           <Property Name="Type_of_day" Type="nvarchar" MaxLength="11" />
           <Property Name="adminId" Type="int" Nullable="false" />
+          <Property Name="Date_in_text" Type="nvarchar" MaxLength="15" />
         </EntityType>
         <EntityType Name="Doctors">
           <Key>
@@ -78,7 +79,7 @@
           <Property Name="DoctorId" Type="int" Nullable="false" />
           <Property Name="PatientId" Type="int" Nullable="false" />
           <Property Name="DateId" Type="int" Nullable="false" />
-          <Property Name="VisitId" Type="int" Nullable="false" />
+          <Property Name="VisitId" Type="int" />
         </EntityType>
         <EntityType Name="Visits">
           <Key>
@@ -152,7 +153,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Time_Visits">
-          <End Role="Visits" Type="Self.Visits" Multiplicity="1" />
+          <End Role="Visits" Type="Self.Visits" Multiplicity="0..1" />
           <End Role="Time" Type="Self.Time" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Visits">
@@ -255,6 +256,7 @@
           <Property Name="Date1" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Type_of_day" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
           <Property Name="adminId" Type="Int32" Nullable="false" />
+          <Property Name="Date_in_text" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Admins" Relationship="Self.FK_Date_Admins" FromRole="Date" ToRole="Admins" />
           <NavigationProperty Name="Time" Relationship="Self.FK_Time_Date" FromRole="Date" ToRole="Time" />
         </EntityType>
@@ -316,7 +318,7 @@
           <Property Name="DoctorId" Type="Int32" Nullable="false" />
           <Property Name="PatientId" Type="Int32" Nullable="false" />
           <Property Name="DateId" Type="Int32" Nullable="false" />
-          <Property Name="VisitId" Type="Int32" Nullable="false" />
+          <Property Name="VisitId" Type="Int32" />
           <NavigationProperty Name="Date" Relationship="Self.FK_Time_Date" FromRole="Time" ToRole="Date" />
           <NavigationProperty Name="Doctors" Relationship="Self.FK_Time_Doctors" FromRole="Time" ToRole="Doctors" />
           <NavigationProperty Name="Patients" Relationship="Self.FK_Time_Patients" FromRole="Time" ToRole="Patients" />
@@ -421,7 +423,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Time_Visits">
-          <End Role="Visits" Type="Self.Visits" Multiplicity="1" />
+          <End Role="Visits" Type="Self.Visits" Multiplicity="0..1" />
           <End Role="Time" Type="Self.Time" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Visits">
@@ -500,6 +502,7 @@
                 <ScalarProperty Name="Date1" ColumnName="Date" />
                 <ScalarProperty Name="Type_of_day" ColumnName="Type_of_day" />
                 <ScalarProperty Name="adminId" ColumnName="adminId" />
+                <ScalarProperty Name="Date_in_text" ColumnName="Date_in_text" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

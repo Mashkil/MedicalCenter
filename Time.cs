@@ -19,7 +19,7 @@ namespace MedicalCenter
         public int DoctorId { get; set; }
         public int PatientId { get; set; }
         public int DateId { get; set; }
-        public int VisitId { get; set; }
+        public Nullable<int> VisitId { get; set; }
     
         public virtual Date Date { get; set; }
         public virtual Doctors Doctors { get; set; }

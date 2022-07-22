@@ -16,6 +16,13 @@ namespace MedicalCenter.Windows
             Select_depart();
         }
 
+        public add_record(string phone_num)
+        {
+            InitializeComponent();
+            phone_number.Text = phone_num;            
+            Select_depart();
+        }
+
         public void Select_depart()        //вывод специальностей врачей
         {
             try
@@ -173,7 +180,7 @@ namespace MedicalCenter.Windows
                     if (date_exist)
                     {
                         var for_date_id = DateTime.Parse(date_of_record.Text);
-                        Date date = db.Date.FirstOrDefault(p => p.Date1 == for_date_id);
+                        Date date = db.Date.FirstOrDefault(p => p.Date1 == for_date_id);                        
                         var new_visit = new Visits()
                         {
                             DoctorId = doctor_id,
@@ -212,6 +219,7 @@ namespace MedicalCenter.Windows
                     else
                     {
                         string today = DateTime.Now.DayOfWeek.ToString();
+                        string date_to_text = DateTime.Parse(date_of_record.Text).ToShortDateString(); // добавление даты в текстовом формате
                         var new_visit = new Visits()
                         {
                             DoctorId = doctor_id,
@@ -221,7 +229,8 @@ namespace MedicalCenter.Windows
                         {
                             Date1 = DateTime.Parse(date_of_record.Text),
                             Type_of_day = today,
-                            adminId = 1
+                            adminId = 1,
+                            Date_in_text = date_to_text
                         };
                         var new_record = new Time()
                         {

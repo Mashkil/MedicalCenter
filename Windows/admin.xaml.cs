@@ -24,7 +24,9 @@ namespace MedicalCenter
 
         private void change_record_Click(object sender, RoutedEventArgs e)
         {
-            
+            Windows.change_patient change_Patient = new Windows.change_patient();
+            change_Patient.ShowDialog();
+            this.Close();
         }
 
         private void show_record_Click(object sender, RoutedEventArgs e)
@@ -35,7 +37,15 @@ namespace MedicalCenter
 
         private void add_record_Click(object sender, RoutedEventArgs e)
         {
+            Windows.add_record add_Record = new Windows.add_record();
+            add_Record.ShowDialog();
+            this.Close();
+        }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();            
         }
     }
 }

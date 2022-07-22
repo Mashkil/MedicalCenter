@@ -119,6 +119,9 @@
     <Compile Include="Windows\add_record.xaml.cs">
       <DependentUpon>add_record.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\change_or_delete.xaml.cs">
+      <DependentUpon>change_or_delete.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\create_new_pat.xaml.cs">
       <DependentUpon>create_new_pat.xaml</DependentUpon>
     </Compile>
@@ -146,6 +149,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\admin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\change_or_delete.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
