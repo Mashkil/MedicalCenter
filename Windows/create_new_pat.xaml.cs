@@ -27,7 +27,8 @@ namespace MedicalCenter.Windows
                             Date_of_birth = DateTime.Parse(date_of_birth.Text),
                             Phone = phonenumber.Text,
                             Series_and_number_of_pass = series_and_number.Text,
-                            Chronic_deseases = chronic_deseases.Text
+                            Chronic_deseases = chronic_deseases.Text,
+                            Date_of_birth_in_text = DateTime.Parse(date_of_birth.Text).ToShortDateString()
                         };
 
                         db.Patients.Add(pat);

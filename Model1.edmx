@@ -71,6 +71,7 @@
           <Property Name="Chronic_deseases" Type="nvarchar" MaxLength="200" />
           <Property Name="Date_of_birth" Type="date" />
           <Property Name="Series_and_number_of_pass" Type="nvarchar" MaxLength="12" />
+          <Property Name="Date_of_birth_in_text" Type="nvarchar" MaxLength="12" />
         </EntityType>
         <EntityType Name="Time">
           <Key>
@@ -82,6 +83,7 @@
           <Property Name="PatientId" Type="int" Nullable="false" />
           <Property Name="DateId" Type="int" Nullable="false" />
           <Property Name="VisitId" Type="int" />
+          <Property Name="Time_in_text" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Visits">
           <Key>
@@ -346,6 +348,7 @@
           <Property Name="Chronic_deseases" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Date_of_birth" Type="DateTime" Precision="0" />
           <Property Name="Series_and_number_of_pass" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="Date_of_birth_in_text" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Time" Relationship="Self.FK_Time_Patients" FromRole="Patients" ToRole="Time" />
           <NavigationProperty Name="Visits" Relationship="Self.FK_Visits_Patients" FromRole="Patients" ToRole="Visits" />
         </EntityType>
@@ -359,6 +362,7 @@
           <Property Name="PatientId" Type="Int32" Nullable="false" />
           <Property Name="DateId" Type="Int32" Nullable="false" />
           <Property Name="VisitId" Type="Int32" />
+          <Property Name="Time_in_text" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Date" Relationship="Self.FK_Time_Date" FromRole="Time" ToRole="Date" />
           <NavigationProperty Name="Doctors" Relationship="Self.FK_Time_Doctors" FromRole="Time" ToRole="Doctors" />
           <NavigationProperty Name="Patients" Relationship="Self.FK_Time_Patients" FromRole="Time" ToRole="Patients" />
@@ -624,6 +628,7 @@
                 <ScalarProperty Name="Chronic_deseases" ColumnName="Chronic_deseases" />
                 <ScalarProperty Name="Date_of_birth" ColumnName="Date_of_birth" />
                 <ScalarProperty Name="Series_and_number_of_pass" ColumnName="Series_and_number_of_pass" />
+                <ScalarProperty Name="Date_of_birth_in_text" ColumnName="Date_of_birth_in_text" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -636,6 +641,7 @@
                 <ScalarProperty Name="PatientId" ColumnName="PatientId" />
                 <ScalarProperty Name="DateId" ColumnName="DateId" />
                 <ScalarProperty Name="VisitId" ColumnName="VisitId" />
+                <ScalarProperty Name="Time_in_text" ColumnName="Time_in_text" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

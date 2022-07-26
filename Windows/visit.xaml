@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MedicalCenter.Windows"
         mc:Ignorable="d"
-        Title="Назначения" Height="758" Width="758">
+        Title="Назначения" MinHeight="682" MinWidth="758"
+        WindowStartupLocation="CenterOwner"
+        Closing="Window_Closing" Height="682"
+        >
     <ScrollViewer>
         <Grid>
             <Grid.RowDefinitions>
@@ -45,19 +48,19 @@
             
             <StackPanel Grid.Row="1" Grid.ColumnSpan="4">
                 <Label Content="Жалобы:" FontSize="15" Margin="0,15,0,15"/>
-                <TextBox x:Name="complaints" TextWrapping="Wrap" MinHeight="70" FontSize="15" 
+                <TextBox x:Name="complaints" TextWrapping="Wrap" FontSize="15" 
                      AcceptsReturn="True" SpellCheck.IsEnabled="True" Language="ru-ru" 
                          VerticalScrollBarVisibility="Auto"/>
                 <Label Content="Назначения:" FontSize="15" Margin="0,15,0,15" MaxHeight="150"/>
-                <TextBox x:Name="appointment" MinHeight="90" FontSize="15" 
+                <TextBox x:Name="appointment" FontSize="15" 
                      AcceptsReturn="True" SpellCheck.IsEnabled="True" Language="ru-ru" 
                          VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" MaxHeight="150"/>
                 <Label Content="Лечение:" FontSize="15" Margin="0,15,0,15" />
-                <TextBox x:Name="therapy" MinHeight="90" FontSize="15" 
+                <TextBox x:Name="therapy" FontSize="15" 
                      AcceptsReturn="True" SpellCheck.IsEnabled="True" Language="ru-ru" 
                          VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" MaxHeight="150"/>
                 <Button x:Name="save" Content="Сохранить" Margin="40" Width="176" FontSize="15" 
-                        HorizontalAlignment="Right" Height="36"/>
+                        HorizontalAlignment="Right" Height="36" Click="save_Click"/>
             </StackPanel>
         </Grid>
     </ScrollViewer>

@@ -19,7 +19,7 @@ namespace MedicalCenter.Windows
         public add_record(string phone_num)
         {
             InitializeComponent();
-            phone_number.Text = phone_num;            
+            phone_number.Text = phone_num;
             Select_depart();
         }
 
@@ -116,7 +116,7 @@ namespace MedicalCenter.Windows
             {
                 using (medcentrDB db = new medcentrDB())
                 {
-                    date_exist = false;
+                    date_exist = false;                                  //проверка на существование даты в бд
                     string[] name_and_surname = doctors.Text.Split(' ');  //разделение фио врача на отдельные имя и фамилию
                     var surname_doc = name_and_surname[0];
                     var name_doc = name_and_surname[1];
@@ -132,7 +132,7 @@ namespace MedicalCenter.Windows
                     if (date != null)
                     {
                         time_for_record = db.Time.Where(t => t.DoctorId == doc.Id && t.DateId == date.Id).ToList();
-                        date_exist = true;
+                        date_exist = true;          // дата уже существует в бд
                     }
                     #endregion
 
@@ -177,10 +177,10 @@ namespace MedicalCenter.Windows
             {
                 using (medcentrDB db = new medcentrDB())
                 {
-                    if (date_exist)
+                    if (date_exist)     //без создания даты в таблице Date
                     {
                         var for_date_id = DateTime.Parse(date_of_record.Text);
-                        Date date = db.Date.FirstOrDefault(p => p.Date1 == for_date_id);                        
+                        Date date = db.Date.FirstOrDefault(p => p.Date1 == for_date_id);
                         var new_visit = new Visits()
                         {
                             DoctorId = doctor_id,
@@ -192,7 +192,8 @@ namespace MedicalCenter.Windows
                             DoctorId = doctor_id,
                             PatientId = patient_id,
                             DateId = date.Id,
-                            VisitId = new_visit.Id
+                            VisitId = new_visit.Id,
+                            Time_in_text = time_of_record.Text
                         };
                         db.Visits.Add(new_visit);
                         db.Time.Add(new_record);

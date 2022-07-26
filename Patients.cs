@@ -29,6 +29,7 @@ namespace MedicalCenter
         public string Chronic_deseases { get; set; }
         public Nullable<System.DateTime> Date_of_birth { get; set; }
         public string Series_and_number_of_pass { get; set; }
+        public string Date_of_birth_in_text { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Time> Time { get; set; }
