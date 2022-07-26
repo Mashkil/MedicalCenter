@@ -125,6 +125,9 @@
     <Compile Include="Windows\create_new_pat.xaml.cs">
       <DependentUpon>create_new_pat.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Main_for_doctor.xaml.cs">
+      <DependentUpon>Main_for_doctor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\old_or_new_pat.xaml.cs">
       <DependentUpon>old_or_new_pat.xaml</DependentUpon>
     </Compile>
@@ -139,6 +142,9 @@
     </Compile>
     <Compile Include="Windows\Type_of_user.xaml.cs">
       <DependentUpon>Type_of_user.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\visit.xaml.cs">
+      <DependentUpon>visit.xaml</DependentUpon>
     </Compile>
     <Page Include="Windows\about_doctors.xaml">
       <SubType>Designer</SubType>
@@ -185,6 +191,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\Main_for_doctor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\old_or_new_pat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -202,6 +212,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Type_of_user.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\visit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

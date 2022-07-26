@@ -23,7 +23,11 @@ namespace MedicalCenter
         public int Id { get; set; }
         public string Password { get; set; }
         public int Admin_or_doctor { get; set; }
+        public Nullable<int> Id_doc { get; set; }
+        public Nullable<int> Id_admin { get; set; }
     
+        public virtual Admins Admins { get; set; }
+        public virtual Doctors Doctors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Logins> Logins { get; set; }
     }

@@ -47,7 +47,8 @@ namespace MedicalCenter.Windows
                     var pass = new Passwords()
                     {
                         Admin_or_doctor = 0,      // Если пользователь администратор , то это поле = 0 , если врач , то 1
-                        Password = password.Text
+                        Password = password.Text,
+                        Id_admin=admins.Id
                     };
                     var log = new Logins()
                     {

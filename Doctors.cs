@@ -17,6 +17,7 @@ namespace MedicalCenter
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Doctors()
         {
+            this.Passwords = new HashSet<Passwords>();
             this.Time = new HashSet<Time>();
             this.Visits = new HashSet<Visits>();
         }
@@ -31,6 +32,8 @@ namespace MedicalCenter
         public string Education { get; set; }
         public string Position { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Passwords> Passwords { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Time> Time { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

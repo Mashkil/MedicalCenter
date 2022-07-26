@@ -18,6 +18,7 @@ namespace MedicalCenter
         public Admins()
         {
             this.Date = new HashSet<Date>();
+            this.Passwords = new HashSet<Passwords>();
         }
     
         public int Id { get; set; }
@@ -30,5 +31,7 @@ namespace MedicalCenter
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Date> Date { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Passwords> Passwords { get; set; }
     }
 }

@@ -56,6 +56,8 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Admin_or_doctor" Type="int" Nullable="false" />
+          <Property Name="Id_doc" Type="int" />
+          <Property Name="Id_admin" Type="int" />
         </EntityType>
         <EntityType Name="Patients">
           <Key>
@@ -113,6 +115,30 @@
             </Principal>
             <Dependent Role="Logins">
               <PropertyRef Name="PassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Passwords_Admins">
+          <End Role="Admins" Type="Self.Admins" Multiplicity="0..1" />
+          <End Role="Passwords" Type="Self.Passwords" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admins">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Passwords">
+              <PropertyRef Name="Id_admin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Passwords_Doctors">
+          <End Role="Doctors" Type="Self.Doctors" Multiplicity="0..1" />
+          <End Role="Passwords" Type="Self.Passwords" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Passwords">
+              <PropertyRef Name="Id_doc" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -205,6 +231,14 @@
             <End Role="Passwords" EntitySet="Passwords" />
             <End Role="Logins" EntitySet="Logins" />
           </AssociationSet>
+          <AssociationSet Name="FK_Passwords_Admins" Association="Self.FK_Passwords_Admins">
+            <End Role="Admins" EntitySet="Admins" />
+            <End Role="Passwords" EntitySet="Passwords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Passwords_Doctors" Association="Self.FK_Passwords_Doctors">
+            <End Role="Doctors" EntitySet="Doctors" />
+            <End Role="Passwords" EntitySet="Passwords" />
+          </AssociationSet>
           <AssociationSet Name="FK_Time_Date" Association="Self.FK_Time_Date">
             <End Role="Date" EntitySet="Date" />
             <End Role="Time" EntitySet="Time" />
@@ -247,6 +281,7 @@
           <Property Name="Salary" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Education" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Date" Relationship="Self.FK_Date_Admins" FromRole="Admins" ToRole="Date" />
+          <NavigationProperty Name="Passwords" Relationship="Self.FK_Passwords_Admins" FromRole="Admins" ToRole="Passwords" />
         </EntityType>
         <EntityType Name="Date">
           <Key>
@@ -273,6 +308,7 @@
           <Property Name="Experience" Type="Int32" Nullable="false" />
           <Property Name="Education" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Passwords" Relationship="Self.FK_Passwords_Doctors" FromRole="Doctors" ToRole="Passwords" />
           <NavigationProperty Name="Time" Relationship="Self.FK_Time_Doctors" FromRole="Doctors" ToRole="Time" />
           <NavigationProperty Name="Visits" Relationship="Self.FK_Visits_Doctors" FromRole="Doctors" ToRole="Visits" />
         </EntityType>
@@ -292,6 +328,10 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Admin_or_doctor" Type="Int32" Nullable="false" />
+          <Property Name="Id_doc" Type="Int32" />
+          <Property Name="Id_admin" Type="Int32" />
+          <NavigationProperty Name="Admins" Relationship="Self.FK_Passwords_Admins" FromRole="Passwords" ToRole="Admins" />
+          <NavigationProperty Name="Doctors" Relationship="Self.FK_Passwords_Doctors" FromRole="Passwords" ToRole="Doctors" />
           <NavigationProperty Name="Logins" Relationship="Self.FK_Logins_Passwords" FromRole="Passwords" ToRole="Logins" />
         </EntityType>
         <EntityType Name="Patients">
@@ -350,6 +390,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Passwords_Admins">
+          <End Role="Admins" Type="Self.Admins" Multiplicity="0..1" />
+          <End Role="Passwords" Type="Self.Passwords" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admins">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Passwords">
+              <PropertyRef Name="Id_admin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Time_Date">
           <End Role="Date" Type="Self.Date" Multiplicity="1" />
           <End Role="Time" Type="Self.Time" Multiplicity="*" />
@@ -359,6 +411,18 @@
             </Principal>
             <Dependent Role="Time">
               <PropertyRef Name="DateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Passwords_Doctors">
+          <End Role="Doctors" Type="Self.Doctors" Multiplicity="0..1" />
+          <End Role="Passwords" Type="Self.Passwords" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Passwords">
+              <PropertyRef Name="Id_doc" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -447,9 +511,17 @@
             <End Role="Admins" EntitySet="Admins" />
             <End Role="Date" EntitySet="Date" />
           </AssociationSet>
+          <AssociationSet Name="FK_Passwords_Admins" Association="Self.FK_Passwords_Admins">
+            <End Role="Admins" EntitySet="Admins" />
+            <End Role="Passwords" EntitySet="Passwords" />
+          </AssociationSet>
           <AssociationSet Name="FK_Time_Date" Association="Self.FK_Time_Date">
             <End Role="Date" EntitySet="Date" />
             <End Role="Time" EntitySet="Time" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Passwords_Doctors" Association="Self.FK_Passwords_Doctors">
+            <End Role="Doctors" EntitySet="Doctors" />
+            <End Role="Passwords" EntitySet="Passwords" />
           </AssociationSet>
           <AssociationSet Name="FK_Time_Doctors" Association="Self.FK_Time_Doctors">
             <End Role="Doctors" EntitySet="Doctors" />
@@ -536,6 +608,8 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Admin_or_doctor" ColumnName="Admin_or_doctor" />
+                <ScalarProperty Name="Id_doc" ColumnName="Id_doc" />
+                <ScalarProperty Name="Id_admin" ColumnName="Id_admin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

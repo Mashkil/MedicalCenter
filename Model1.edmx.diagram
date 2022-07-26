@@ -4,17 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2285dd231ab94949875b0203574829cd" Name="Diagram1">
-        <EntityTypeShape EntityType="medcentrModel.Admins" Width="1.5" PointX="1.5" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="medcentrModel.Date" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="medcentrModel.Doctors" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="medcentrModel.Logins" Width="1.5" PointX="6" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="medcentrModel.Passwords" Width="1.5" PointX="3.75" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="medcentrModel.Patients" Width="1.5" PointX="0.75" PointY="12" IsExpanded="true" />
-        <EntityTypeShape EntityType="medcentrModel.Time" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="medcentrModel.Visits" Width="1.5" PointX="6" PointY="4.375" IsExpanded="true" />
+      <Diagram DiagramId="5855cfc30e674451bf6d5b613cbbfacb" Name="Diagram1">
+        <EntityTypeShape EntityType="medcentrModel.Admins" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="medcentrModel.Date" Width="1.5" PointX="3.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="medcentrModel.Doctors" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="medcentrModel.Logins" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="medcentrModel.Passwords" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="medcentrModel.Patients" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="medcentrModel.Time" Width="1.5" PointX="6" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="medcentrModel.Visits" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="medcentrModel.FK_Date_Admins" ManuallyRouted="false" />
+        <AssociationConnector Association="medcentrModel.FK_Passwords_Admins" ManuallyRouted="false" />
         <AssociationConnector Association="medcentrModel.FK_Time_Date" ManuallyRouted="false" />
+        <AssociationConnector Association="medcentrModel.FK_Passwords_Doctors" ManuallyRouted="false" />
         <AssociationConnector Association="medcentrModel.FK_Time_Doctors" ManuallyRouted="false" />
         <AssociationConnector Association="medcentrModel.FK_Visits_Doctors" ManuallyRouted="false" />
         <AssociationConnector Association="medcentrModel.FK_Logins_Passwords" ManuallyRouted="false" />

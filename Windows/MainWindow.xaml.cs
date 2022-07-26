@@ -24,11 +24,8 @@ namespace MedicalCenter
         }
 
         private void autorize_Click(object sender, RoutedEventArgs e)
-        {
-            //Windows.change_patient change_Patient = new Windows.change_patient();
-            //change_Patient.Show();
-            //Hide();
-            Windows.change_patient type = new Windows.change_patient();
+        {            
+            Windows.visit type = new Windows.visit();
             type.Show();
             Hide();
         }
