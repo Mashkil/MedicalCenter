@@ -1,0 +1,67 @@
+﻿<Window x:Class="MedicalCenter.Windows.visits_for_admin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MedicalCenter.Windows"
+        mc:Ignorable="d"
+        Title="Прием пациента" Height="669" Width="800">
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>                
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Row="0" Grid.Column="0" >
+                <Label Content="Имя" Margin="0,15,5,10" FontSize="15"/>
+                <Label Content="Фамилия" Margin="0,10,5,10" FontSize="15"/>
+                <Label Content="Отчество" Margin="0,10,5,10" FontSize="15"/>
+                <Label Content="Дата рождения" Margin="0,10,5,10" HorizontalAlignment="Left" HorizontalContentAlignment="Right" FontSize="15"/>
+            </StackPanel>
+            <StackPanel Grid.Row="0" Grid.Column="1">
+                <TextBox x:Name="name" TextWrapping="Wrap" Width="120" Margin="0,15,5,10" HorizontalAlignment="Left" FontSize="15" IsReadOnly="True"/>
+                <TextBox x:Name="surname" TextWrapping="Wrap" Width="120" Margin="0,10,5,10" HorizontalAlignment="Left" FontSize="15" IsReadOnly="True"/>
+                <TextBox x:Name="patr" TextWrapping="Wrap" Width="120" Margin="0,10,5,10" HorizontalAlignment="Left" FontSize="15" IsReadOnly="True"/>
+                <TextBox x:Name="date_of_birth" TextWrapping="Wrap" Width="120" Margin="0,10,5,10" HorizontalAlignment="Left" FontSize="15" IsReadOnly="True"/>
+            </StackPanel>
+            <StackPanel Grid.Row="0" Grid.Column="2" >
+                <Label Content="ФИО врача" Margin="0,15,5,10" FontSize="15"/>
+                <Label Content="Специализация" Margin="0,10,5,10" FontSize="15"/>
+                <Label Content="Дата приема" Margin="0,10,5,10" FontSize="15"/>
+                <Label Content="Время приема" Margin="0,10,5,10" HorizontalAlignment="Left" HorizontalContentAlignment="Right" FontSize="15"/>
+
+            </StackPanel>
+            <StackPanel Grid.Row="0" Grid.Column="3">
+                <TextBox x:Name="fio_doc" TextWrapping="Wrap" Width="120" Margin="0,15,5,10" HorizontalAlignment="Left" FontSize="15" IsReadOnly="True"/>
+                <TextBox x:Name="specialization" TextWrapping="Wrap" Width="120" Margin="0,10,5,10" HorizontalAlignment="Left" FontSize="15" IsReadOnly="True"/>
+                <TextBox x:Name="date_of_rec" TextWrapping="Wrap" Width="120" Margin="0,10,5,10" HorizontalAlignment="Left" FontSize="15" IsReadOnly="True"/>
+                <TextBox x:Name="time_of_rec" TextWrapping="Wrap" Width="120" Margin="0,10,5,10" HorizontalAlignment="Left" FontSize="15" IsReadOnly="True"/>
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="6">
+                <Label Content="Жалобы:" FontSize="15" Margin="0,15,0,15"/>
+                <TextBox x:Name="complaints" TextWrapping="Wrap" FontSize="15" 
+                     AcceptsReturn="True" SpellCheck.IsEnabled="True" Language="ru-ru" 
+                         VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
+                <Label Content="Назначения:" FontSize="15" Margin="0,15,0,15" MaxHeight="150"/>
+                <TextBox x:Name="appointment" FontSize="15" 
+                     AcceptsReturn="True" SpellCheck.IsEnabled="True" Language="ru-ru" 
+                         VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" MaxHeight="150" IsReadOnly="True"/>
+                <Label Content="Лечение:" FontSize="15" Margin="0,15,0,15" />
+                <TextBox x:Name="therapy" FontSize="15" 
+                     AcceptsReturn="True" SpellCheck.IsEnabled="True" Language="ru-ru" 
+                         VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" MaxHeight="150" IsReadOnly="True"/>
+                <Button x:Name="print" Content="Печатать" Margin="40" Width="176" FontSize="15" 
+                        HorizontalAlignment="Right" Height="36" Click="print_Click"/>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Window>

@@ -31,8 +31,7 @@ namespace MedicalCenter.Windows
         }
 
         private void search_Click(object sender, RoutedEventArgs e)
-        {
-            //MessageBox.Show($"{data} {lastname.Text}  {data.Text}", "", MessageBoxButton.OK);
+        {            
             try
             {
                 using (medcentrDB db = new medcentrDB())
@@ -53,14 +52,15 @@ namespace MedicalCenter.Windows
                                      select new
                                      {
                                          Data = data_str,
-                                         Time = time.Time1,
+                                         Time = time.Time_in_text,
                                          Lastname_doc = doc.Lastname,
                                          Lastname_pat = pat.Lastname,
-                                         Phone_pat = pat.Phone
+                                         Phone_pat = pat.Phone,
+                                         id_ = doc.Id
                                      };
                         Grid.ItemsSource = record.ToList();
                     }
-                    //поля фамилия и имя пациента отсутсвуют , остальные заполнены
+                    //поля фамилия и имя пациента отсутствуют , остальные заполнены
                     else if (data.Text != "" && lastname.Text != "" && pat_surname.Text == "" && pat_name.Text == "")
                     {
                         DateTime data1 = DateTime.Parse(data.Text);
@@ -74,10 +74,11 @@ namespace MedicalCenter.Windows
                                      select new
                                      {
                                          Data = data_str,
-                                         Time = time.Time1,
+                                         Time = time.Time_in_text,
                                          Lastname_doc = doc.Lastname,
                                          Lastname_pat = pat.Lastname,
-                                         Phone_pat = pat.Phone
+                                         Phone_pat = pat.Phone,
+                                         id_ = doc.Id
                                      };
 
                         Grid.ItemsSource = record.ToList();
@@ -94,11 +95,12 @@ namespace MedicalCenter.Windows
                                      join date in db.Date on time.DateId equals date.Id
                                      select new
                                      {
-                                         Data = date.Date1,
-                                         Time = time.Time1,
+                                         Data = date.Date_in_text,
+                                         Time = time.Time_in_text,
                                          Lastname_doc = doc.Lastname,
                                          Lastname_pat = pat.Lastname,
-                                         Phone_pat = pat.Phone
+                                         Phone_pat = pat.Phone,
+                                         id_ = doc.Id
                                      };
                         Grid.ItemsSource = record.ToList();
                     }
@@ -113,11 +115,12 @@ namespace MedicalCenter.Windows
                                      join date in db.Date on time.DateId equals date.Id
                                      select new
                                      {
-                                         Data = date.Date1,
-                                         Time = time.Time1,
+                                         Data = date.Date_in_text,
+                                         Time = time.Time_in_text,
                                          Lastname_doc = doc.Lastname,
                                          Lastname_pat = pat.Lastname,
-                                         Phone_pat = pat.Phone
+                                         Phone_pat = pat.Phone,
+                                         id_ = doc.Id
                                      };
 
                         Grid.ItemsSource = record.ToList();
@@ -137,10 +140,11 @@ namespace MedicalCenter.Windows
                                      select new
                                      {
                                          Data = data_str,
-                                         Time = time.Time1,
+                                         Time = time.Time_in_text,
                                          Lastname_doc = doc.Lastname,
                                          Lastname_pat = pat.Lastname,
-                                         Phone_pat = pat.Phone
+                                         Phone_pat = pat.Phone,
+                                         id_ = doc.Id
                                      };
 
                         Grid.ItemsSource = record.ToList();
@@ -161,10 +165,11 @@ namespace MedicalCenter.Windows
                                      select new
                                      {
                                          Data = data_str,
-                                         Time = time.Time1,
+                                         Time = time.Time_in_text,
                                          Lastname_doc = doc.Lastname,
                                          Lastname_pat = pat.Lastname,
-                                         Phone_pat = pat.Phone
+                                         Phone_pat = pat.Phone,
+                                         id_ = doc.Id
                                      };
 
                         Grid.ItemsSource = record.ToList();
@@ -184,10 +189,11 @@ namespace MedicalCenter.Windows
                                      select new
                                      {
                                          Data = data_str,
-                                         Time = time.Time1,
+                                         Time = time.Time_in_text,
                                          Lastname_doc = doc.Lastname,
                                          Lastname_pat = pat.Lastname,
-                                         Phone_pat = pat.Phone
+                                         Phone_pat = pat.Phone,
+                                         id_ = doc.Id
                                      };
 
                         Grid.ItemsSource = record.ToList();
@@ -201,7 +207,55 @@ namespace MedicalCenter.Windows
             {
                 MessageBox.Show($"{t.Message}", "Ошибка", MessageBoxButton.OK);
             }
+        }
 
+        private void Grid_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+            try
+            {
+                int id_vis;
+                string name_pat, surname_pat, patr_pat, date_of_b, specialiation, date_of_rec, time_of_rec, fio_doc;
+                var buf = new DataGridCellInfo(Grid.Items[Grid.SelectedIndex], Grid.Columns[0]);
+                var dat = buf.Column.GetCellContent(buf.Item) as TextBlock;
+                DateTime d1 = DateTime.Parse(dat.Text);
+
+                var buf1 = new DataGridCellInfo(Grid.Items[Grid.SelectedIndex], Grid.Columns[1]);
+                var time = buf1.Column.GetCellContent(buf1.Item) as TextBlock;
+                TimeSpan t1 = TimeSpan.Parse(time.Text);
+
+                var buf2 = new DataGridCellInfo(Grid.Items[Grid.SelectedIndex], Grid.Columns[4]);
+                var nom = buf2.Column.GetCellContent(buf2.Item) as TextBlock;
+
+                var buf3 = new DataGridCellInfo(Grid.Items[Grid.SelectedIndex], Grid.Columns[5]);
+                var id_doctor = buf3.Column.GetCellContent(buf3.Item) as TextBlock;
+
+                int id1 = Convert.ToInt32(id_doctor.Text);
+
+                using (medcentrDB db = new medcentrDB())
+                {
+                    var dat1 = db.Date.FirstOrDefault(p => p.Date1 == d1);
+                    var pat = db.Patients.FirstOrDefault(p => p.Phone == nom.Text);
+                    var doc1 = db.Doctors.FirstOrDefault(p => p.Id == id1);
+                    var time1 = db.Time.FirstOrDefault(p => p.DateId == dat1.Id && p.DoctorId == doc1.Id && p.PatientId == pat.Id);
+                    var vis = db.Visits.FirstOrDefault(p => p.Id == time1.VisitId);
+                    id_vis = vis.Id;
+                    name_pat = pat.Firstname;
+                    surname_pat = pat.Lastname;
+                    patr_pat = pat.Patronymic;
+                    date_of_b = pat.Date_of_birth_in_text;
+                    specialiation = doc1.Position;
+                    date_of_rec = dat.Text;
+                    time_of_rec = time.Text;
+                    fio_doc = doc1.Lastname + " " + doc1.Firstname.Substring(0, 1) + "." + doc1.Patronymic.Substring(0, 1) + ".";
+                }
+                Windows.visits_for_admin visits_For_Admin = new visits_for_admin(id_vis, name_pat, surname_pat, patr_pat, date_of_b, fio_doc, specialiation, date_of_rec, time_of_rec);
+                visits_For_Admin.ShowDialog();
+            }
+            catch (Exception t)
+            {
+                MessageBox.Show($"{t.Message}");
+            }
 
         }
     }

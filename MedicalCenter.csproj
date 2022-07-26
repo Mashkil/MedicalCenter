@@ -146,6 +146,9 @@
     <Compile Include="Windows\visit.xaml.cs">
       <DependentUpon>visit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\visits_for_admin.xaml.cs">
+      <DependentUpon>visits_for_admin.xaml</DependentUpon>
+    </Compile>
     <Page Include="Windows\about_doctors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -216,6 +219,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\visit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\visits_for_admin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

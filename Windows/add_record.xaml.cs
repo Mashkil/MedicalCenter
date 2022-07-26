@@ -219,6 +219,7 @@ namespace MedicalCenter.Windows
                     }
                     else
                     {
+                        open_admin = true;
                         string today = DateTime.Now.DayOfWeek.ToString();
                         string date_to_text = DateTime.Parse(date_of_record.Text).ToShortDateString(); // добавление даты в текстовом формате
                         var new_visit = new Visits()
@@ -239,7 +240,8 @@ namespace MedicalCenter.Windows
                             DoctorId = doctor_id,
                             PatientId = patient_id,
                             DateId = new_date.Id,
-                            VisitId = new_visit.Id
+                            VisitId = new_visit.Id,
+                            Time_in_text = time_of_record.Text
                         };
                         db.Visits.Add(new_visit);
                         db.Date.Add(new_date);
@@ -253,12 +255,14 @@ namespace MedicalCenter.Windows
                                 App.Current.MainWindow.Close();
                             Windows.add_record add_Record = new add_record();
                             add_Record.Show();
+                            open_admin = true;
                             this.Close();
                         }
                         else
                         {
                             admin Admin = new admin();
                             Admin.Show();
+                            open_admin = true;
                             this.Close();
                         }
                     }
@@ -275,8 +279,9 @@ namespace MedicalCenter.Windows
             if (!open_admin)
             {
                 admin Admin = new admin();
-                Admin.Show();
+                Admin.Show();            
             }
+            
         }
     }
 }

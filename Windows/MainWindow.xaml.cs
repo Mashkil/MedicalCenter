@@ -25,7 +25,7 @@ namespace MedicalCenter
 
         private void autorize_Click(object sender, RoutedEventArgs e)
         {            
-            Windows.Main_for_doctor type = new Windows.Main_for_doctor(5);
+            admin type = new admin();
             type.Show();
             Hide();
         }
