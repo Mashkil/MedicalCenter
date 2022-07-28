@@ -55,21 +55,16 @@ namespace MedicalCenter.Windows
                         Education = education.Text,
                         Position = position.Text
                     };
-                    var pass = new Passwords()
-                    {
-                        Admin_or_doctor = 1,      // Если пользователь администратор , то это поле = 0 , если врач , то 1
-                        Password = password.Text,
-                        Id_doc= doc.Id
-                    };
-                    var log = new Logins()
+                    var log_and_pass = new Logins_and_passwords()
                     {
                         Login = login.Text,
-                        PassId = pass.Id
+                        Password = password.Text,
+                        Admin_or_doctor = 1,      // Если пользователь администратор , то это поле = 0 , если врач , то 1
+                        Id_doc = doc.Id
                     };
 
                     db.Doctors.Add(doc);
-                    db.Passwords.Add(pass);
-                    db.Logins.Add(log);
+                    db.Logins_and_passwords.Add(log_and_pass);
                     db.SaveChanges();
 
                     if (MessageBox.Show($"Врач {name.Text} успешно добавлен в систему", "", MessageBoxButton.OK, MessageBoxImage.None) == MessageBoxResult.OK)

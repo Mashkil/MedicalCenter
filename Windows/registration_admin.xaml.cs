@@ -44,21 +44,16 @@ namespace MedicalCenter.Windows
                         Salary = Convert.ToDecimal(salary.Text),
                         Education = education.Text
                     };
-                    var pass = new Passwords()
-                    {
-                        Admin_or_doctor = 0,      // Если пользователь администратор , то это поле = 0 , если врач , то 1
-                        Password = password.Text,
-                        Id_admin=admins.Id
-                    };
-                    var log = new Logins()
+                    var log_and_pass = new Logins_and_passwords()
                     {
                         Login = login.Text,
-                        PassId = pass.Id
+                        Password = password.Text,
+                        Admin_or_doctor = 0,      // Если пользователь администратор , то это поле = 0 , если врач , то 1
+                        Id_admin = admins.Id
                     };
 
                     db.Admins.Add(admins);
-                    db.Passwords.Add(pass);
-                    db.Logins.Add(log);
+                    db.Logins_and_passwords.Add(log_and_pass);
                     db.SaveChanges();
 
                     if (MessageBox.Show($"Администратор {name.Text} успешно добавлен в систему", "", MessageBoxButton.OK, MessageBoxImage.None) == MessageBoxResult.OK)
@@ -80,7 +75,7 @@ namespace MedicalCenter.Windows
             if (App.Current.MainWindow != null)
                 App.Current.MainWindow.Close();
             MainWindow main = new MainWindow();
-            main.Show();            
+            main.Show();
         }
     }
 }

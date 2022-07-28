@@ -28,8 +28,7 @@ namespace MedicalCenter
         public virtual DbSet<Admins> Admins { get; set; }
         public virtual DbSet<Date> Date { get; set; }
         public virtual DbSet<Doctors> Doctors { get; set; }
-        public virtual DbSet<Logins> Logins { get; set; }
-        public virtual DbSet<Passwords> Passwords { get; set; }
+        public virtual DbSet<Logins_and_passwords> Logins_and_passwords { get; set; }
         public virtual DbSet<Patients> Patients { get; set; }
         public virtual DbSet<Time> Time { get; set; }
         public virtual DbSet<Visits> Visits { get; set; }

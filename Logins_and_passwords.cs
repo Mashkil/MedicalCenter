@@ -12,12 +12,16 @@ namespace MedicalCenter
     using System;
     using System.Collections.Generic;
     
-    public partial class Logins
+    public partial class Logins_and_passwords
     {
         public int Id { get; set; }
         public string Login { get; set; }
-        public int PassId { get; set; }
+        public string Password { get; set; }
+        public Nullable<int> Admin_or_doctor { get; set; }
+        public int Id_doc { get; set; }
+        public int Id_admin { get; set; }
     
-        public virtual Passwords Passwords { get; set; }
+        public virtual Admins Admins { get; set; }
+        public virtual Doctors Doctors { get; set; }
     }
 }

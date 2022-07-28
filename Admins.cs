@@ -17,8 +17,8 @@ namespace MedicalCenter
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Admins()
         {
+            this.Logins_and_passwords = new HashSet<Logins_and_passwords>();
             this.Date = new HashSet<Date>();
-            this.Passwords = new HashSet<Passwords>();
         }
     
         public int Id { get; set; }
@@ -30,8 +30,8 @@ namespace MedicalCenter
         public string Education { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Date> Date { get; set; }
+        public virtual ICollection<Logins_and_passwords> Logins_and_passwords { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Passwords> Passwords { get; set; }
+        public virtual ICollection<Date> Date { get; set; }
     }
 }
