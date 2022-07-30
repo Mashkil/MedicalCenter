@@ -1,0 +1,31 @@
+﻿<Window x:Class="MedicalCenter.Windows.create_report"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MedicalCenter.Windows"
+        mc:Ignorable="d"
+        Title="Создание отчета" Height="392" Width="638"
+        FontSize="14"
+        >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <Label Content="Введите дату начала:" HorizontalAlignment="Left" Margin="5,20,0,10"/>
+            <DatePicker x:Name="start_date" Width="150" HorizontalAlignment="Left" Margin="5,20,0,20"/>
+            <Label Content="Введите до какой даты сформировать отчет:" HorizontalAlignment="Left" Margin="5,20,0,10"/>
+            <DatePicker x:Name="end_date" Width="150" HorizontalAlignment="Left" Margin="5,20,0,20"/>            
+        </StackPanel>
+
+        <StackPanel Grid.Column="1">
+            <TextBlock TextWrapping="Wrap" Margin="5,10,0,10" Text="Выберите врача, если хотите сформировать отчет по конкретному врачу:" HorizontalAlignment="Left" Width="292" />
+            <ComboBox x:Name="doc_box" HorizontalAlignment="Left" Width="150" Margin="5,20,0,20"/>
+            <TextBlock TextWrapping="Wrap" Margin="5,10,0,10" Text="Выберите специальность, если хотите сформировать отчет по конкретной специальности:" HorizontalAlignment="Left" Width="292" />
+            <ComboBox x:Name="pos_box" HorizontalAlignment="Left" Width="150" Margin="5,20,0,20"/>
+            <Button x:Name="create_report1" Content="Создать отчет" Background="{x:Null}" Foreground="#FF673AB7" BorderThickness="2,2,2,2" Width="155" Margin="40" Click="create_report1_Click" />            
+        </StackPanel>
+    </Grid>
+</Window>

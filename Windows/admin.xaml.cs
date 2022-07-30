@@ -45,6 +45,20 @@ namespace MedicalCenter
             this.Close();
         }
 
+        private void add_pat_Click(object sender, RoutedEventArgs e)
+        {
+            Windows.create_new_pat create_New_Pat = new Windows.create_new_pat();
+            create_New_Pat.ShowDialog();
+            not_open_main_window_=true;
+            this.Close();
+        }
+
+        private void report_Click(object sender, RoutedEventArgs e)
+        {
+            Windows.create_report create_Report = new Windows.create_report();
+            create_Report.ShowDialog();
+        }
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (!not_open_main_window_)
@@ -52,15 +66,7 @@ namespace MedicalCenter
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
             }
-            
-        }
 
-        private void add_pat_Click(object sender, RoutedEventArgs e)
-        {
-            Windows.create_new_pat create_New_Pat = new Windows.create_new_pat();
-            create_New_Pat.ShowDialog();
-            not_open_main_window_=true;
-            this.Close();
         }
     }
 }

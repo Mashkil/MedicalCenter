@@ -209,7 +209,7 @@ namespace MedicalCenter.Windows
             }
         }
 
-        private void Grid_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void Grid_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)//просмотр посещения с назанчениями
         {
 
             try
@@ -254,7 +254,7 @@ namespace MedicalCenter.Windows
             }
             catch (Exception t)
             {
-                MessageBox.Show($"{t.Message}");
+                MessageBox.Show(t.Message);
             }
 
         }

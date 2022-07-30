@@ -18,11 +18,15 @@
             <Button x:Name="add_record" Content="Добавить запись +" Margin="35" FontSize="30" Style="{DynamicResource MaterialDesignFlatButton}" Height="46" Click="add_record_Click"/>
             <Button x:Name="change_record" Content="Изменить запись" Margin="0 10 0 20" Width="350" FontSize="20" Height="45" Click="change_record_Click"/>
             <Button x:Name="adout_doctors" Content="Информация о врачах" Margin="0 20 0 20" Width="350" FontSize="20" Height="45" Cursor="Hand" Click="adout_doctors_Click"/>
-            <Button x:Name="show_record" Content="Просмотреть запись" Margin="0 20 0 20" Width="350" FontSize="20" Height="45" Click="show_record_Click"/>
+            <Button x:Name="show_record" Margin="0 20 0 20" Width="350" FontSize="20" Height="67" Click="show_record_Click">
+                <TextBlock TextAlignment="Center" >
+                    Просмотреть запись и/или <LineBreak/> распечатать прием
+                </TextBlock>
+            </Button>
         </StackPanel>
         <StackPanel Margin="20" Grid.Column="1">
             <Button x:Name="add_pat" Content="Добавить анкету пациента" Width="350" FontSize="20" Height="45" Margin="20" Click="add_pat_Click"/>
-            <Button x:Name="otchet" Content="Печать отчета" Width="350" FontSize="20" Height="45" Margin="20"/>
+            <Button x:Name="report" Content="Создание отчета" Width="350" FontSize="20" Height="45" Margin="20" HorizontalAlignment="Center" Click="report_Click"/>
         </StackPanel>
     </Grid>
 </Window>

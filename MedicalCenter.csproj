@@ -132,11 +132,11 @@
     <Compile Include="Windows\create_new_pat.xaml.cs">
       <DependentUpon>create_new_pat.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\create_report.xaml.cs">
+      <DependentUpon>create_report.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Main_for_doctor.xaml.cs">
       <DependentUpon>Main_for_doctor.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\old_or_new_pat.xaml.cs">
-      <DependentUpon>old_or_new_pat.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
@@ -180,6 +180,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\create_report.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -202,10 +206,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Windows\Main_for_doctor.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\old_or_new_pat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

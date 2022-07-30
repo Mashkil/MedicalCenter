@@ -59,8 +59,8 @@
                 <TextBox x:Name="therapy" FontSize="15" 
                      AcceptsReturn="True" SpellCheck.IsEnabled="True" Language="ru-ru" 
                          VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" MaxHeight="150" IsReadOnly="True"/>
-                <Button x:Name="print" Content="Печатать" Margin="40" Width="176" FontSize="15" 
-                        HorizontalAlignment="Right" Height="36" Click="print_Click"/>
+                <Button x:Name="save" Content="Сохранить в pdf файл" Margin="40" Width="227" FontSize="15" 
+                        HorizontalAlignment="Right" Height="36" Click="save_Click"/>
             </StackPanel>
 
         </Grid>
