@@ -26,9 +26,11 @@ namespace MedicalCenter
         public string Appointment { get; set; }
         public string Complaint { get; set; }
         public string Therapy { get; set; }
+        public Nullable<int> Id_service { get; set; }
     
         public virtual Doctors Doctors { get; set; }
         public virtual Patients Patients { get; set; }
+        public virtual Services Services { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Time> Time { get; set; }
     }

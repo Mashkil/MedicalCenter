@@ -179,6 +179,8 @@ namespace MedicalCenter.Windows
                 {
                     if (date_exist)     //без создания даты в таблице Date
                     {
+                        var admin = db.Date.FirstOrDefault(p => p.Date1 == DateTime.Today); //поиск id админа, который сегодня работает
+
                         var for_date_id = DateTime.Parse(date_of_record.Text);
                         Date date = db.Date.FirstOrDefault(p => p.Date1 == for_date_id);
                         var new_visit = new Visits()
@@ -193,7 +195,8 @@ namespace MedicalCenter.Windows
                             PatientId = patient_id,
                             DateId = date.Id,
                             VisitId = new_visit.Id,
-                            Time_in_text = time_of_record.Text
+                            Time_in_text = time_of_record.Text,
+                            Id_admin = admin.adminId
                         };
                         db.Visits.Add(new_visit);
                         db.Time.Add(new_record);
@@ -217,9 +220,11 @@ namespace MedicalCenter.Windows
                             open_admin = true;
                         }
                     }
-                    else
+                    else  //с созданием даты в таблице Date
                     {
                         open_admin = true;
+                        var admin = db.Date.FirstOrDefault(p => p.Date1 == DateTime.Today); //поиск id админа, который сегодня работает
+
                         string today = DateTime.Now.DayOfWeek.ToString();
                         string date_to_text = DateTime.Parse(date_of_record.Text).ToShortDateString(); // добавление даты в текстовом формате
                         var new_visit = new Visits()
@@ -231,7 +236,6 @@ namespace MedicalCenter.Windows
                         {
                             Date1 = DateTime.Parse(date_of_record.Text),
                             Type_of_day = today,
-                            adminId = 1,
                             Date_in_text = date_to_text
                         };
                         var new_record = new Time()
@@ -241,7 +245,8 @@ namespace MedicalCenter.Windows
                             PatientId = patient_id,
                             DateId = new_date.Id,
                             VisitId = new_visit.Id,
-                            Time_in_text = time_of_record.Text
+                            Time_in_text = time_of_record.Text,
+                            Id_admin = admin.adminId
                         };
                         db.Visits.Add(new_visit);
                         db.Date.Add(new_date);
@@ -279,9 +284,9 @@ namespace MedicalCenter.Windows
             if (!open_admin)
             {
                 admin Admin = new admin();
-                Admin.Show();            
+                Admin.Show();
             }
-            
+
         }
     }
 }

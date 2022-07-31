@@ -24,7 +24,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
           <Property Name="Type_of_day" Type="nvarchar" MaxLength="11" />
-          <Property Name="adminId" Type="int" Nullable="false" />
+          <Property Name="adminId" Type="int" />
           <Property Name="Date_in_text" Type="nvarchar" MaxLength="15" />
         </EntityType>
         <EntityType Name="Doctors">
@@ -49,8 +49,8 @@
           <Property Name="Login" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Admin_or_doctor" Type="int" />
-          <Property Name="Id_doc" Type="int" Nullable="false" />
-          <Property Name="Id_admin" Type="int" Nullable="false" />
+          <Property Name="Id_doc" Type="int" />
+          <Property Name="Id_admin" Type="int" />
         </EntityType>
         <EntityType Name="Patients">
           <Key>
@@ -66,6 +66,15 @@
           <Property Name="Series_and_number_of_pass" Type="nvarchar" MaxLength="12" />
           <Property Name="Date_of_birth_in_text" Type="nvarchar" MaxLength="12" />
         </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_of_service" Type="nvarchar" MaxLength="25" />
+          <Property Name="Id_doc" Type="int" />
+          <Property Name="Cost" Type="int" />
+        </EntityType>
         <EntityType Name="Time">
           <Key>
             <PropertyRef Name="Id" />
@@ -77,6 +86,8 @@
           <Property Name="DateId" Type="int" Nullable="false" />
           <Property Name="VisitId" Type="int" />
           <Property Name="Time_in_text" Type="nvarchar" MaxLength="20" />
+          <Property Name="Id_admin" Type="int" />
+          <Property Name="Id_service" Type="int" />
         </EntityType>
         <EntityType Name="Visits">
           <Key>
@@ -88,9 +99,10 @@
           <Property Name="Appointment" Type="nvarchar(max)" />
           <Property Name="Complaint" Type="nvarchar(max)" />
           <Property Name="Therapy" Type="nvarchar(max)" />
+          <Property Name="Id_service" Type="int" />
         </EntityType>
         <Association Name="FK__Logins_an__Id_ad__6477ECF3">
-          <End Role="Admins" Type="Self.Admins" Multiplicity="1" />
+          <End Role="Admins" Type="Self.Admins" Multiplicity="0..1" />
           <End Role="Logins_and_passwords" Type="Self.Logins_and_passwords" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Admins">
@@ -102,7 +114,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Logins_an__Id_do__6383C8BA">
-          <End Role="Doctors" Type="Self.Doctors" Multiplicity="1" />
+          <End Role="Doctors" Type="Self.Doctors" Multiplicity="0..1" />
           <End Role="Logins_and_passwords" Type="Self.Logins_and_passwords" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Doctors">
@@ -113,8 +125,44 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Services__Id_doc__73BA3083">
+          <End Role="Doctors" Type="Self.Doctors" Multiplicity="0..1" />
+          <End Role="Services" Type="Self.Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Services">
+              <PropertyRef Name="Id_doc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Time__Id_service__74AE54BC">
+          <End Role="Services" Type="Self.Services" Multiplicity="0..1" />
+          <End Role="Time" Type="Self.Time" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Time">
+              <PropertyRef Name="Id_service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Visits__Id_servi__75A278F5">
+          <End Role="Services" Type="Self.Services" Multiplicity="0..1" />
+          <End Role="Visits" Type="Self.Visits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Visits">
+              <PropertyRef Name="Id_service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Date_Admins">
-          <End Role="Admins" Type="Self.Admins" Multiplicity="1" />
+          <End Role="Admins" Type="Self.Admins" Multiplicity="0..1" />
           <End Role="Date" Type="Self.Date" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Admins">
@@ -122,6 +170,18 @@
             </Principal>
             <Dependent Role="Date">
               <PropertyRef Name="adminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Time_Admins">
+          <End Role="Admins" Type="Self.Admins" Multiplicity="0..1" />
+          <End Role="Time" Type="Self.Time" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admins">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Time">
+              <PropertyRef Name="Id_admin" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -203,6 +263,7 @@
           <EntitySet Name="Doctors" EntityType="Self.Doctors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Logins_and_passwords" EntityType="Self.Logins_and_passwords" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Patients" EntityType="Self.Patients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Time" EntityType="Self.Time" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Visits" EntityType="Self.Visits" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Logins_an__Id_ad__6477ECF3" Association="Self.FK__Logins_an__Id_ad__6477ECF3">
@@ -213,9 +274,25 @@
             <End Role="Doctors" EntitySet="Doctors" />
             <End Role="Logins_and_passwords" EntitySet="Logins_and_passwords" />
           </AssociationSet>
+          <AssociationSet Name="FK__Services__Id_doc__73BA3083" Association="Self.FK__Services__Id_doc__73BA3083">
+            <End Role="Doctors" EntitySet="Doctors" />
+            <End Role="Services" EntitySet="Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Time__Id_service__74AE54BC" Association="Self.FK__Time__Id_service__74AE54BC">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="Time" EntitySet="Time" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Visits__Id_servi__75A278F5" Association="Self.FK__Visits__Id_servi__75A278F5">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="Visits" EntitySet="Visits" />
+          </AssociationSet>
           <AssociationSet Name="FK_Date_Admins" Association="Self.FK_Date_Admins">
             <End Role="Admins" EntitySet="Admins" />
             <End Role="Date" EntitySet="Date" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Time_Admins" Association="Self.FK_Time_Admins">
+            <End Role="Admins" EntitySet="Admins" />
+            <End Role="Time" EntitySet="Time" />
           </AssociationSet>
           <AssociationSet Name="FK_Time_Date" Association="Self.FK_Time_Date">
             <End Role="Date" EntitySet="Date" />
@@ -260,6 +337,7 @@
           <Property Name="Education" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Logins_and_passwords" Relationship="Self.FK__Logins_an__Id_ad__6477ECF3" FromRole="Admins" ToRole="Logins_and_passwords" />
           <NavigationProperty Name="Date" Relationship="Self.FK_Date_Admins" FromRole="Admins" ToRole="Date" />
+          <NavigationProperty Name="Time" Relationship="Self.FK_Time_Admins" FromRole="Admins" ToRole="Time" />
         </EntityType>
         <EntityType Name="Date">
           <Key>
@@ -268,7 +346,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Date1" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Type_of_day" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
-          <Property Name="adminId" Type="Int32" Nullable="false" />
+          <Property Name="adminId" Type="Int32" />
           <Property Name="Date_in_text" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Admins" Relationship="Self.FK_Date_Admins" FromRole="Date" ToRole="Admins" />
           <NavigationProperty Name="Time" Relationship="Self.FK_Time_Date" FromRole="Date" ToRole="Time" />
@@ -287,6 +365,7 @@
           <Property Name="Education" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Logins_and_passwords" Relationship="Self.FK__Logins_an__Id_do__6383C8BA" FromRole="Doctors" ToRole="Logins_and_passwords" />
+          <NavigationProperty Name="Services" Relationship="Self.FK__Services__Id_doc__73BA3083" FromRole="Doctors" ToRole="Services" />
           <NavigationProperty Name="Time" Relationship="Self.FK_Time_Doctors" FromRole="Doctors" ToRole="Time" />
           <NavigationProperty Name="Visits" Relationship="Self.FK_Visits_Doctors" FromRole="Doctors" ToRole="Visits" />
         </EntityType>
@@ -298,8 +377,8 @@
           <Property Name="Login" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Admin_or_doctor" Type="Int32" />
-          <Property Name="Id_doc" Type="Int32" Nullable="false" />
-          <Property Name="Id_admin" Type="Int32" Nullable="false" />
+          <Property Name="Id_doc" Type="Int32" />
+          <Property Name="Id_admin" Type="Int32" />
           <NavigationProperty Name="Admins" Relationship="Self.FK__Logins_an__Id_ad__6477ECF3" FromRole="Logins_and_passwords" ToRole="Admins" />
           <NavigationProperty Name="Doctors" Relationship="Self.FK__Logins_an__Id_do__6383C8BA" FromRole="Logins_and_passwords" ToRole="Doctors" />
         </EntityType>
@@ -319,6 +398,18 @@
           <NavigationProperty Name="Time" Relationship="Self.FK_Time_Patients" FromRole="Patients" ToRole="Time" />
           <NavigationProperty Name="Visits" Relationship="Self.FK_Visits_Patients" FromRole="Patients" ToRole="Visits" />
         </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_of_service" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Id_doc" Type="Int32" />
+          <Property Name="Cost" Type="Int32" />
+          <NavigationProperty Name="Doctors" Relationship="Self.FK__Services__Id_doc__73BA3083" FromRole="Services" ToRole="Doctors" />
+          <NavigationProperty Name="Time" Relationship="Self.FK__Time__Id_service__74AE54BC" FromRole="Services" ToRole="Time" />
+          <NavigationProperty Name="Visits" Relationship="Self.FK__Visits__Id_servi__75A278F5" FromRole="Services" ToRole="Visits" />
+        </EntityType>
         <EntityType Name="Time">
           <Key>
             <PropertyRef Name="Id" />
@@ -330,9 +421,13 @@
           <Property Name="DateId" Type="Int32" Nullable="false" />
           <Property Name="VisitId" Type="Int32" />
           <Property Name="Time_in_text" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Id_admin" Type="Int32" />
+          <Property Name="Id_service" Type="Int32" />
+          <NavigationProperty Name="Admins" Relationship="Self.FK_Time_Admins" FromRole="Time" ToRole="Admins" />
           <NavigationProperty Name="Date" Relationship="Self.FK_Time_Date" FromRole="Time" ToRole="Date" />
           <NavigationProperty Name="Doctors" Relationship="Self.FK_Time_Doctors" FromRole="Time" ToRole="Doctors" />
           <NavigationProperty Name="Patients" Relationship="Self.FK_Time_Patients" FromRole="Time" ToRole="Patients" />
+          <NavigationProperty Name="Services" Relationship="Self.FK__Time__Id_service__74AE54BC" FromRole="Time" ToRole="Services" />
           <NavigationProperty Name="Visits" Relationship="Self.FK_Time_Visits" FromRole="Time" ToRole="Visits" />
         </EntityType>
         <EntityType Name="Visits">
@@ -345,12 +440,14 @@
           <Property Name="Appointment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Complaint" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Therapy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Id_service" Type="Int32" />
           <NavigationProperty Name="Doctors" Relationship="Self.FK_Visits_Doctors" FromRole="Visits" ToRole="Doctors" />
           <NavigationProperty Name="Patients" Relationship="Self.FK_Visits_Patients" FromRole="Visits" ToRole="Patients" />
+          <NavigationProperty Name="Services" Relationship="Self.FK__Visits__Id_servi__75A278F5" FromRole="Visits" ToRole="Services" />
           <NavigationProperty Name="Time" Relationship="Self.FK_Time_Visits" FromRole="Visits" ToRole="Time" />
         </EntityType>
         <Association Name="FK__Logins_an__Id_ad__6477ECF3">
-          <End Role="Admins" Type="Self.Admins" Multiplicity="1" />
+          <End Role="Admins" Type="Self.Admins" Multiplicity="0..1" />
           <End Role="Logins_and_passwords" Type="Self.Logins_and_passwords" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Admins">
@@ -362,7 +459,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Date_Admins">
-          <End Role="Admins" Type="Self.Admins" Multiplicity="1" />
+          <End Role="Admins" Type="Self.Admins" Multiplicity="0..1" />
           <End Role="Date" Type="Self.Date" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Admins">
@@ -370,6 +467,18 @@
             </Principal>
             <Dependent Role="Date">
               <PropertyRef Name="adminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Time_Admins">
+          <End Role="Admins" Type="Self.Admins" Multiplicity="0..1" />
+          <End Role="Time" Type="Self.Time" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admins">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Time">
+              <PropertyRef Name="Id_admin" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -386,13 +495,25 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Logins_an__Id_do__6383C8BA">
-          <End Role="Doctors" Type="Self.Doctors" Multiplicity="1" />
+          <End Role="Doctors" Type="Self.Doctors" Multiplicity="0..1" />
           <End Role="Logins_and_passwords" Type="Self.Logins_and_passwords" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Doctors">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Logins_and_passwords">
+              <PropertyRef Name="Id_doc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Services__Id_doc__73BA3083">
+          <End Role="Doctors" Type="Self.Doctors" Multiplicity="0..1" />
+          <End Role="Services" Type="Self.Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Services">
               <PropertyRef Name="Id_doc" />
             </Dependent>
           </ReferentialConstraint>
@@ -445,6 +566,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Time__Id_service__74AE54BC">
+          <End Role="Services" Type="Self.Services" Multiplicity="0..1" />
+          <End Role="Time" Type="Self.Time" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Time">
+              <PropertyRef Name="Id_service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Visits__Id_servi__75A278F5">
+          <End Role="Services" Type="Self.Services" Multiplicity="0..1" />
+          <End Role="Visits" Type="Self.Visits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Visits">
+              <PropertyRef Name="Id_service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Time_Visits">
           <End Role="Visits" Type="Self.Visits" Multiplicity="0..1" />
           <End Role="Time" Type="Self.Time" Multiplicity="*" />
@@ -463,6 +608,7 @@
           <EntitySet Name="Doctors" EntityType="Self.Doctors" />
           <EntitySet Name="Logins_and_passwords" EntityType="Self.Logins_and_passwords" />
           <EntitySet Name="Patients" EntityType="Self.Patients" />
+          <EntitySet Name="Services" EntityType="Self.Services" />
           <EntitySet Name="Time" EntityType="Self.Time" />
           <EntitySet Name="Visits" EntityType="Self.Visits" />
           <AssociationSet Name="FK__Logins_an__Id_ad__6477ECF3" Association="Self.FK__Logins_an__Id_ad__6477ECF3">
@@ -473,6 +619,10 @@
             <End Role="Admins" EntitySet="Admins" />
             <End Role="Date" EntitySet="Date" />
           </AssociationSet>
+          <AssociationSet Name="FK_Time_Admins" Association="Self.FK_Time_Admins">
+            <End Role="Admins" EntitySet="Admins" />
+            <End Role="Time" EntitySet="Time" />
+          </AssociationSet>
           <AssociationSet Name="FK_Time_Date" Association="Self.FK_Time_Date">
             <End Role="Date" EntitySet="Date" />
             <End Role="Time" EntitySet="Time" />
@@ -480,6 +630,10 @@
           <AssociationSet Name="FK__Logins_an__Id_do__6383C8BA" Association="Self.FK__Logins_an__Id_do__6383C8BA">
             <End Role="Doctors" EntitySet="Doctors" />
             <End Role="Logins_and_passwords" EntitySet="Logins_and_passwords" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Services__Id_doc__73BA3083" Association="Self.FK__Services__Id_doc__73BA3083">
+            <End Role="Doctors" EntitySet="Doctors" />
+            <End Role="Services" EntitySet="Services" />
           </AssociationSet>
           <AssociationSet Name="FK_Time_Doctors" Association="Self.FK_Time_Doctors">
             <End Role="Doctors" EntitySet="Doctors" />
@@ -495,6 +649,14 @@
           </AssociationSet>
           <AssociationSet Name="FK_Visits_Patients" Association="Self.FK_Visits_Patients">
             <End Role="Patients" EntitySet="Patients" />
+            <End Role="Visits" EntitySet="Visits" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Time__Id_service__74AE54BC" Association="Self.FK__Time__Id_service__74AE54BC">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="Time" EntitySet="Time" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Visits__Id_servi__75A278F5" Association="Self.FK__Visits__Id_servi__75A278F5">
+            <End Role="Services" EntitySet="Services" />
             <End Role="Visits" EntitySet="Visits" />
           </AssociationSet>
           <AssociationSet Name="FK_Time_Visits" Association="Self.FK_Time_Visits">
@@ -574,6 +736,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="medcentrModel.Services">
+              <MappingFragment StoreEntitySet="Services">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name_of_service" ColumnName="Name_of_service" />
+                <ScalarProperty Name="Id_doc" ColumnName="Id_doc" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Time">
             <EntityTypeMapping TypeName="medcentrModel.Time">
               <MappingFragment StoreEntitySet="Time">
@@ -584,6 +756,8 @@
                 <ScalarProperty Name="DateId" ColumnName="DateId" />
                 <ScalarProperty Name="VisitId" ColumnName="VisitId" />
                 <ScalarProperty Name="Time_in_text" ColumnName="Time_in_text" />
+                <ScalarProperty Name="Id_admin" ColumnName="Id_admin" />
+                <ScalarProperty Name="Id_service" ColumnName="Id_service" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -596,6 +770,7 @@
                 <ScalarProperty Name="Appointment" ColumnName="Appointment" />
                 <ScalarProperty Name="Complaint" ColumnName="Complaint" />
                 <ScalarProperty Name="Therapy" ColumnName="Therapy" />
+                <ScalarProperty Name="Id_service" ColumnName="Id_service" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

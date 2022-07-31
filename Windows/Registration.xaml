@@ -6,41 +6,67 @@
         xmlns:local="clr-namespace:MedicalCenter.Windows"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Добавление врача" MinHeight="540" MinWidth="500" Height="550" Width="510"
+        Title="Добавление врача" MinHeight="540" MinWidth="940" Height="612" Width="948"
         Closing="Window_Closing"
+        FontSize="14"
         >
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
-        </Grid.ColumnDefinitions>        
-            <StackPanel Grid.Column="0" >
-                
-            <Label Content="Имя" Margin="0,10,5,10" Height="25"/>
-            <Label Content="Фамилия" Margin="0,10,5,10" Height="25"/>
-            <Label Content="Отчество" Margin="0,10,5,10" Height="25"/>
-            <Label Content="Возраст" Margin="0,10,5,10" Height="25"/>
-            <Label Content="Заработная плата" Margin="0,10,5,10" Height="25"/>
-            <Label Content="Стаж работы" Margin="0,10,5,10" Height="25"/>
-            <Label Content="Должность" Margin="0,10,5,10" Height="25"/>
-            <Label Content="Образование" Margin="0,10,5,10" Height="25"/>            
-            <Label Content="Логин (мин. 3 символа)" Margin="0,10,5,10" Height="25"/>
-            <Label Content="Пароль (мин. 5 символов)" Margin="0,10,5,10" Height="25"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
 
+        <StackPanel Grid.Column="0" Grid.RowSpan="2">
+            <Label Content="Имя" Margin="0,10,5,10" Height="30"/>
+            <Label Content="Фамилия" Margin="0,10,5,10" Height="30"/>
+            <Label Content="Отчество" Margin="0,10,5,10" Height="30"/>
+            <Label Content="Возраст" Margin="0,10,5,10" Height="30"/>
+            <Label Content="Заработная плата" Margin="0,10,5,10" Height="30"/>
+            <Label Content="Стаж работы" Margin="0,10,5,10" Height="30"/>
+            <Label Content="Должность" Margin="0,10,5,10" Height="30"/>
+            <Label Content="Образование" Margin="0,10,5,10" Height="30"/>
+            <Label Content="Логин (мин. 3 символа)" Margin="0,10,5,10" Height="30"/>
+            <Label Content="Пароль (мин. 5 символов)" Margin="0,10,5,10" Height="30"/>
         </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.RowSpan="2">
+            <TextBox x:Name="name" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="30"/>
+            <TextBox x:Name="surname" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="30"/>
+            <TextBox x:Name="patronimyc" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="30"/>
+            <TextBox x:Name="age" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="30"/>
+            <TextBox x:Name="salary" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="30"/>
+            <TextBox x:Name="expirience" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="30"/>
+            <TextBox x:Name="position" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="30" LostFocus="position_LostFocus"/>
+            <TextBox x:Name="education" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10"/>
+            <TextBox x:Name="login" TextWrapping="Wrap"  Width="150" HorizontalAlignment="Left" Margin="0,10,5,10" Height="30"/>
+            <TextBox x:Name="password" TextWrapping="Wrap"  Width="150" HorizontalAlignment="Left" Margin="0,10,5,10" Height="30"/>
+            <Button x:Name="save" Content="Добавить пользователя" Margin="0,20,5,10" Width="200" Background="{x:Null}" Foreground="#FF673AB7" Click="save_Click"/>
+        </StackPanel>
+
+        <DataGrid x:Name="services" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="1" AutoGeneratingColumn="services_AutoGeneratingColumn">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Удалить" Click="del_click"/>
+                    <MenuItem Header="Редактировать" Click="edit_click"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>            
+        </DataGrid>
         
-        <StackPanel Grid.Column="1">
-            <TextBox x:Name="name" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
-            <TextBox x:Name="surname" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
-            <TextBox x:Name="patronimyc" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
-            <TextBox x:Name="age" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
-            <TextBox x:Name="salary" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
-            <TextBox x:Name="expirience" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
-            <TextBox x:Name="position" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
-            <TextBox x:Name="education" TextWrapping="Wrap"  Width="308" HorizontalAlignment="Left" Margin="0,10,5,10"/>            
-            <TextBox x:Name="login" TextWrapping="Wrap"  Width="150" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
-            <TextBox x:Name="password" TextWrapping="Wrap"  Width="150" HorizontalAlignment="Left" Margin="0,10,5,10" Height="25"/>
-            <Button x:Name="save" Content="Добавить пользователя" Margin="0,15,5,10" Width="200" Background="{x:Null}" Foreground="#FF673AB7" Click="save_Click"/>
+        <StackPanel Grid.Column="2" Grid.Row="0">
+            <Label Content="Наименование услуги:" Margin="10"/>
+            <ComboBox x:Name="service_name" Margin="10" IsEditable="True"/>
         </StackPanel>
+        <StackPanel Grid.Column="3" Grid.Row="0">
+            <Label Content="Стоимость услуги (руб):" Margin="10"/>
+            <TextBox x:Name="service_cost" Margin="10"/>
+            <Button x:Name="add_service" Content="Добавить" Margin="30" Background="{x:Null}" Foreground="#FF673AB7" Click="add_service_Click"/>
+        </StackPanel>
+
     </Grid>
 </Window>

@@ -18,8 +18,8 @@ namespace MedicalCenter
         public string Login { get; set; }
         public string Password { get; set; }
         public Nullable<int> Admin_or_doctor { get; set; }
-        public int Id_doc { get; set; }
-        public int Id_admin { get; set; }
+        public Nullable<int> Id_doc { get; set; }
+        public Nullable<int> Id_admin { get; set; }
     
         public virtual Admins Admins { get; set; }
         public virtual Doctors Doctors { get; set; }

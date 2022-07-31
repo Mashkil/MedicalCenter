@@ -19,6 +19,7 @@ namespace MedicalCenter
         {
             this.Logins_and_passwords = new HashSet<Logins_and_passwords>();
             this.Date = new HashSet<Date>();
+            this.Time = new HashSet<Time>();
         }
     
         public int Id { get; set; }
@@ -33,5 +34,7 @@ namespace MedicalCenter
         public virtual ICollection<Logins_and_passwords> Logins_and_passwords { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Date> Date { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Time> Time { get; set; }
     }
 }

@@ -21,10 +21,14 @@ namespace MedicalCenter
         public int DateId { get; set; }
         public Nullable<int> VisitId { get; set; }
         public string Time_in_text { get; set; }
+        public Nullable<int> Id_admin { get; set; }
+        public Nullable<int> Id_service { get; set; }
     
+        public virtual Admins Admins { get; set; }
         public virtual Date Date { get; set; }
         public virtual Doctors Doctors { get; set; }
         public virtual Patients Patients { get; set; }
+        public virtual Services Services { get; set; }
         public virtual Visits Visits { get; set; }
     }
 }

@@ -30,6 +30,7 @@ namespace MedicalCenter
         public virtual DbSet<Doctors> Doctors { get; set; }
         public virtual DbSet<Logins_and_passwords> Logins_and_passwords { get; set; }
         public virtual DbSet<Patients> Patients { get; set; }
+        public virtual DbSet<Services> Services { get; set; }
         public virtual DbSet<Time> Time { get; set; }
         public virtual DbSet<Visits> Visits { get; set; }
     }

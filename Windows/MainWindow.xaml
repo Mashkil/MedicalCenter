@@ -22,10 +22,10 @@
             </Border.Effect>
             <StackPanel Margin="0,0,0,10">
                 <Label Content="Авторизация" Width="206" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="22" FontFamily="Arial" Margin="10"/>
-                <Label Content="Логин:&#xA;" Width="162" Height="26" FlowDirection="LeftToRight" Margin="1" />
-                <TextBox x:Name="password" TextWrapping="NoWrap" Width="168" BorderBrush="Black" Height="32" Margin="3" />
-                <Label Content="Пароль:" RenderTransformOrigin="0.474,0.572" Width="162" Margin="1" />
-                <TextBox x:Name="login" TextWrapping="NoWrap" Width="168" BorderBrush="Black" Height="32" Margin="3"/>
+                <Label Content="Логин:" Width="162" Height="26" FlowDirection="LeftToRight" Margin="1" />
+                <TextBox x:Name="login" TextWrapping="NoWrap" Width="168" BorderBrush="Black" Height="32" Margin="3" />
+                <Label Content="Пароль:" RenderTransformOrigin="0.474,0.572" Width="162" Margin="1" />                
+                <TextBox x:Name="password" TextWrapping="NoWrap" Width="168" BorderBrush="Black" Height="32" Margin="3"/>
                 <Button x:Name="autorize" Content="Войти" Width="114" Height="32" Click="autorize_Click" Margin="10"/>
                 <Button x:Name="registration" Content="Регистрация нового пользователя" Height="36" Width="278" Margin="10" Style="{DynamicResource MaterialDesignFlatButton}" Click="registration_Click"/>
             </StackPanel>

@@ -18,6 +18,7 @@ namespace MedicalCenter
         public Doctors()
         {
             this.Logins_and_passwords = new HashSet<Logins_and_passwords>();
+            this.Services = new HashSet<Services>();
             this.Time = new HashSet<Time>();
             this.Visits = new HashSet<Visits>();
         }
@@ -34,6 +35,8 @@ namespace MedicalCenter
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Logins_and_passwords> Logins_and_passwords { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Services> Services { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Time> Time { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
