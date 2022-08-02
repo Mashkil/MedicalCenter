@@ -27,6 +27,10 @@ namespace MedicalCenter.Windows
                 e.Column.Header = "Номер телефона пациента";
             if (e.PropertyName.StartsWith("Data"))
                 e.Column.Header = "Дата";
+            if (e.PropertyName.StartsWith("Name_of_serv"))
+                e.Column.Header = "Услуга";
+            if (e.PropertyName.StartsWith("Cost_of_serv"))
+                e.Column.Header = "Стоимость";
 
         }
 
@@ -49,6 +53,8 @@ namespace MedicalCenter.Windows
                                      where pat.Lastname == pat_surname.Text
                                      join date in db.Date on time.DateId equals date.Id
                                      where date.Date1 == data1
+                                     join serv in db.Services on time.Id_service equals serv.Id
+                                     where serv.Id==time.Id_service
                                      select new
                                      {
                                          Data = data_str,
@@ -56,6 +62,8 @@ namespace MedicalCenter.Windows
                                          Lastname_doc = doc.Lastname,
                                          Lastname_pat = pat.Lastname,
                                          Phone_pat = pat.Phone,
+                                         Name_of_serv = serv.Name_of_service,
+                                         Cost_of_serv= serv.Cost,
                                          id_ = doc.Id
                                      };
                         Grid.ItemsSource = record.ToList();
@@ -71,6 +79,8 @@ namespace MedicalCenter.Windows
                                      join pat in db.Patients on time.PatientId equals pat.Id
                                      join date in db.Date on time.DateId equals date.Id
                                      where date.Date1 == data1
+                                     join serv in db.Services on time.Id_service equals serv.Id
+                                     where serv.Id == time.Id_service
                                      select new
                                      {
                                          Data = data_str,
@@ -78,6 +88,8 @@ namespace MedicalCenter.Windows
                                          Lastname_doc = doc.Lastname,
                                          Lastname_pat = pat.Lastname,
                                          Phone_pat = pat.Phone,
+                                         Name_of_serv = serv.Name_of_service,
+                                         Cost_of_serv = serv.Cost,
                                          id_ = doc.Id
                                      };
 
@@ -93,6 +105,8 @@ namespace MedicalCenter.Windows
                                      where pat.Firstname == pat_name.Text
                                      where pat.Lastname == pat_surname.Text
                                      join date in db.Date on time.DateId equals date.Id
+                                     join serv in db.Services on time.Id_service equals serv.Id
+                                     where serv.Id == time.Id_service
                                      select new
                                      {
                                          Data = date.Date_in_text,
@@ -100,6 +114,8 @@ namespace MedicalCenter.Windows
                                          Lastname_doc = doc.Lastname,
                                          Lastname_pat = pat.Lastname,
                                          Phone_pat = pat.Phone,
+                                         Name_of_serv = serv.Name_of_service,
+                                         Cost_of_serv = serv.Cost,
                                          id_ = doc.Id
                                      };
                         Grid.ItemsSource = record.ToList();
@@ -113,6 +129,8 @@ namespace MedicalCenter.Windows
                                      where pat.Firstname == pat_name.Text
                                      where pat.Lastname == pat_surname.Text
                                      join date in db.Date on time.DateId equals date.Id
+                                     join serv in db.Services on time.Id_service equals serv.Id
+                                     where serv.Id == time.Id_service
                                      select new
                                      {
                                          Data = date.Date_in_text,
@@ -120,6 +138,8 @@ namespace MedicalCenter.Windows
                                          Lastname_doc = doc.Lastname,
                                          Lastname_pat = pat.Lastname,
                                          Phone_pat = pat.Phone,
+                                         Name_of_serv = serv.Name_of_service,
+                                         Cost_of_serv = serv.Cost,
                                          id_ = doc.Id
                                      };
 
@@ -137,6 +157,8 @@ namespace MedicalCenter.Windows
                                      where pat.Lastname == pat_surname.Text
                                      join date in db.Date on time.DateId equals date.Id
                                      where date.Date1 == data1
+                                     join serv in db.Services on time.Id_service equals serv.Id
+                                     where serv.Id == time.Id_service
                                      select new
                                      {
                                          Data = data_str,
@@ -144,6 +166,8 @@ namespace MedicalCenter.Windows
                                          Lastname_doc = doc.Lastname,
                                          Lastname_pat = pat.Lastname,
                                          Phone_pat = pat.Phone,
+                                         Name_of_serv = serv.Name_of_service,
+                                         Cost_of_serv = serv.Cost,
                                          id_ = doc.Id
                                      };
 
@@ -162,6 +186,8 @@ namespace MedicalCenter.Windows
                                      where pat.Firstname == pat_name.Text
                                      join date in db.Date on time.DateId equals date.Id
                                      where date.Date1 == data1
+                                     join serv in db.Services on time.Id_service equals serv.Id
+                                     where serv.Id == time.Id_service
                                      select new
                                      {
                                          Data = data_str,
@@ -169,6 +195,8 @@ namespace MedicalCenter.Windows
                                          Lastname_doc = doc.Lastname,
                                          Lastname_pat = pat.Lastname,
                                          Phone_pat = pat.Phone,
+                                         Name_of_serv = serv.Name_of_service,
+                                         Cost_of_serv = serv.Cost,
                                          id_ = doc.Id
                                      };
 
@@ -186,6 +214,8 @@ namespace MedicalCenter.Windows
                                      where pat.Lastname == pat_surname.Text
                                      join date in db.Date on time.DateId equals date.Id
                                      where date.Date1 == data1
+                                     join serv in db.Services on time.Id_service equals serv.Id
+                                     where serv.Id == time.Id_service
                                      select new
                                      {
                                          Data = data_str,
@@ -193,6 +223,8 @@ namespace MedicalCenter.Windows
                                          Lastname_doc = doc.Lastname,
                                          Lastname_pat = pat.Lastname,
                                          Phone_pat = pat.Phone,
+                                         Name_of_serv = serv.Name_of_service,
+                                         Cost_of_serv = serv.Cost,
                                          id_ = doc.Id
                                      };
 
@@ -215,7 +247,7 @@ namespace MedicalCenter.Windows
             try
             {
                 int id_vis;
-                string name_pat, surname_pat, patr_pat, date_of_b, specialiation, date_of_rec, time_of_rec, fio_doc;
+                string name_pat, surname_pat, patr_pat, date_of_b, serv_name, date_of_rec, time_of_rec, fio_doc;
                 var buf = new DataGridCellInfo(Grid.Items[Grid.SelectedIndex], Grid.Columns[0]);
                 var dat = buf.Column.GetCellContent(buf.Item) as TextBlock;
                 DateTime d1 = DateTime.Parse(dat.Text);
@@ -227,7 +259,10 @@ namespace MedicalCenter.Windows
                 var buf2 = new DataGridCellInfo(Grid.Items[Grid.SelectedIndex], Grid.Columns[4]);
                 var nom = buf2.Column.GetCellContent(buf2.Item) as TextBlock;
 
-                var buf3 = new DataGridCellInfo(Grid.Items[Grid.SelectedIndex], Grid.Columns[5]);
+                var buf4 = new DataGridCellInfo(Grid.Items[Grid.SelectedIndex], Grid.Columns[5]);
+                var serv = buf4.Column.GetCellContent(buf4.Item) as TextBlock;
+
+                var buf3 = new DataGridCellInfo(Grid.Items[Grid.SelectedIndex], Grid.Columns[7]);
                 var id_doctor = buf3.Column.GetCellContent(buf3.Item) as TextBlock;
 
                 int id1 = Convert.ToInt32(id_doctor.Text);
@@ -239,17 +274,19 @@ namespace MedicalCenter.Windows
                     var doc1 = db.Doctors.FirstOrDefault(p => p.Id == id1);
                     var time1 = db.Time.FirstOrDefault(p => p.DateId == dat1.Id && p.DoctorId == doc1.Id && p.PatientId == pat.Id);
                     var vis = db.Visits.FirstOrDefault(p => p.Id == time1.VisitId);
+                    var sr = db.Services.FirstOrDefault(p => p.Id == vis.Id_service);
+
                     id_vis = vis.Id;
                     name_pat = pat.Firstname;
                     surname_pat = pat.Lastname;
                     patr_pat = pat.Patronymic;
                     date_of_b = pat.Date_of_birth_in_text;
-                    specialiation = doc1.Position;
+                    serv_name=sr.Name_of_service;
                     date_of_rec = dat.Text;
                     time_of_rec = time.Text;
                     fio_doc = doc1.Lastname + " " + doc1.Firstname.Substring(0, 1) + "." + doc1.Patronymic.Substring(0, 1) + ".";
                 }
-                Windows.visits_for_admin visits_For_Admin = new visits_for_admin(id_vis, name_pat, surname_pat, patr_pat, date_of_b, fio_doc, specialiation, date_of_rec, time_of_rec);
+                Windows.visits_for_admin visits_For_Admin = new visits_for_admin(id_vis, name_pat, surname_pat, patr_pat, date_of_b, fio_doc, serv_name, date_of_rec, time_of_rec);
                 visits_For_Admin.ShowDialog();
             }
             catch (Exception t)

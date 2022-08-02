@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MedicalCenter.Windows"
         mc:Ignorable="d"
-        Title="Прием пациента" Height="681" Width="800">
+        Title="Прием пациента" MinHeight="651" MinWidth="800" Height="660" Width="815"
+        WindowStartupLocation="CenterOwner"
+        >
     <ScrollViewer>
         <Grid x:Name="gr">
             <Grid.RowDefinitions>
@@ -34,14 +36,14 @@
             </StackPanel>
             <StackPanel Grid.Row="0" Grid.Column="2" >
                 <Label Content="ФИО врача" Margin="0,15,5,10" FontSize="15"/>
-                <Label Content="Специализация" Margin="0,10,5,10" FontSize="15"/>
+                <Label Content="Наименование услуги" Margin="0,10,5,10" FontSize="15"/>
                 <Label Content="Дата приема" Margin="0,10,5,10" FontSize="15"/>
                 <Label Content="Время приема" Margin="0,10,5,10" HorizontalAlignment="Left" HorizontalContentAlignment="Right" FontSize="15"/>
             </StackPanel>
             
             <StackPanel Grid.Row="0" Grid.Column="3">
                 <TextBox x:Name="fio_doc" TextWrapping="Wrap" Width="120" Margin="0,15,5,10" HorizontalAlignment="Left" FontSize="15" IsReadOnly="True"/>
-                <TextBox x:Name="specialization" TextWrapping="Wrap" Width="120" Margin="0,10,5,10" HorizontalAlignment="Left" FontSize="15" IsReadOnly="True"/>
+                <TextBox x:Name="service_name" TextWrapping="Wrap" Width="120" Margin="0,10,5,10" HorizontalAlignment="Left" FontSize="15" IsReadOnly="True"/>
                 <TextBox x:Name="date_of_rec" TextWrapping="Wrap" Width="120" Margin="0,10,5,10" HorizontalAlignment="Left" FontSize="15" IsReadOnly="True"/>
                 <TextBox x:Name="time_of_rec" TextWrapping="Wrap" Width="120" Margin="0,10,5,10" HorizontalAlignment="Left" FontSize="15" IsReadOnly="True"/>
             </StackPanel>

@@ -12,7 +12,7 @@ namespace MedicalCenter.Windows
     public partial class visits_for_admin : Window
     {
 
-        public visits_for_admin(int id_vis, string name_pat, string surname_pat, string patr_pat, string date_of_b_pat, string fio_doc, string specialiation, string date_of_rec, string time_of_rec)
+        public visits_for_admin(int id_vis, string name_pat, string surname_pat, string patr_pat, string date_of_b_pat, string fio_doc, string serv_name, string date_of_rec, string time_of_rec)
         {
 
             try
@@ -23,7 +23,7 @@ namespace MedicalCenter.Windows
                 patr.Text = patr_pat;
                 date_of_birth.Text = date_of_b_pat;
                 this.fio_doc.Text = fio_doc;
-                this.specialization.Text = specialiation;
+                this.service_name.Text = serv_name;
                 this.date_of_rec.Text = date_of_rec;
                 this.time_of_rec.Text = time_of_rec;
 
@@ -67,7 +67,7 @@ namespace MedicalCenter.Windows
                     table.AddCell(new Phrase("Фамилия   -  ", font));
                     table.AddCell(new Phrase(surname.Text, font));
                     table.AddCell(new Phrase("Специализация   -  ", font));
-                    table.AddCell(new Phrase(specialization.Text, font));
+                    table.AddCell(new Phrase(service_name.Text, font));
                     table.AddCell(new Phrase("Отчество   -  ", font));
                     table.AddCell(new Phrase(patr.Text, font));
                     table.AddCell(new Phrase("Дата приема   -  ", font));
