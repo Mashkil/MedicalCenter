@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MedicalCenter.Windows"
         mc:Ignorable="d"
-        Title="Тип пользователя" MaxHeight="250" MaxWidth="350" MinHeight="250" MinWidth="350">
+        Title="Тип пользователя" MaxHeight="250" MaxWidth="350" MinHeight="250" MinWidth="350"
+        WindowStartupLocation="CenterScreen"
+        >
     <Grid>
         <StackPanel>
         <Label Content="Выберите тип пользователя" HorizontalAlignment="Center" Margin="0,33,0,10" VerticalAlignment="Top" Width="309" 

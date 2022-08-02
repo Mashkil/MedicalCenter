@@ -38,11 +38,14 @@ namespace MedicalCenter.Windows
                                   where pat.Id == rec.PatientId
                                   join dat in db.Date on rec.DateId equals dat.Id
                                   where dat.Date1 == d
-                                  orderby rec.Time1 descending
+                                  join serv in db.Services on rec.Id_service equals serv.Id
+                                  where serv.Id == rec.Id
+                                  orderby rec.Time1 ascending
                                   select new
                                   {
                                       Date = dat.Date_in_text,
                                       Time = rec.Time_in_text,
+                                      Serv_name = serv.Name_of_service,
                                       Name_pat = pat.Firstname,
                                       Surname_pat = pat.Lastname,
                                       patr_pat = pat.Patronymic,
@@ -58,7 +61,6 @@ namespace MedicalCenter.Windows
             {
                 MessageBox.Show($"{t.Message}");
             }
-
         }
 
         private void grid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
@@ -79,6 +81,8 @@ namespace MedicalCenter.Windows
                 e.Column.Header = "Номер телефона пациента";
             if (e.PropertyName.StartsWith("id_vis"))
                 e.Column.Header = "Id посещения";
+            if (e.PropertyName.StartsWith("Serv_name"))
+                e.Column.Header = "Наименование услуги";
         }
 
         private void grid_MouseDoubleClick(object sender, MouseButtonEventArgs e)// выбор пациента из списка
@@ -104,11 +108,11 @@ namespace MedicalCenter.Windows
                 var cicc = new DataGridCellInfo(grid.Items[grid.SelectedIndex], grid.Columns[6]);
                 var ph = cicc.Column.GetCellContent(cicc.Item) as TextBlock;
                 phone_apt = ph.Text;
-                
+
                 var ciccc = new DataGridCellInfo(grid.Items[grid.SelectedIndex], grid.Columns[7]);
-                var vis = ciccc.Column.GetCellContent(ciccc.Item) as TextBlock;                
+                var vis = ciccc.Column.GetCellContent(ciccc.Item) as TextBlock;
                 id_visit = Convert.ToInt32(vis.Text);
-                
+
 
                 #region Вычисление возраста
                 DateTime now = DateTime.Now;

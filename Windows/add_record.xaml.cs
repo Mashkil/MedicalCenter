@@ -232,7 +232,7 @@ namespace MedicalCenter.Windows
                             DateId = date.Id,
                             VisitId = new_visit.Id,
                             Time_in_text = time_of_record.Text,
-                            Id_admin = admin.adminId,
+                            Id_admin = 1,  //TODO: ИСПРАВИТЬ на admin.Id, ВРЕМЕННОЕ РЕШЕНИЕ
                             Id_service = id_service
                         };
                         db.Visits.Add(new_visit);
@@ -287,7 +287,7 @@ namespace MedicalCenter.Windows
                             DateId = new_date.Id,
                             VisitId = new_visit.Id,
                             Time_in_text = time_of_record.Text,
-                            Id_admin = admin.adminId,
+                            Id_admin = 1,    //TODO: ИСПРАВИТЬ на admin.Id, ВРЕМЕННОЕ РЕШЕНИЕ
                             Id_service = id_service
                         };
 
@@ -321,7 +321,6 @@ namespace MedicalCenter.Windows
                 MessageBox.Show($"{t.Message} ", "Ошибка", MessageBoxButton.OK);
             }
         }
-
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
