@@ -14,6 +14,12 @@ namespace MedicalCenter.Windows
         {
             InitializeComponent();
             Select_depart();
+            using (medcentrDB db = new medcentrDB())
+            {
+                var admin1 = db.Date.FirstOrDefault(p => p.Date1 == DateTime.Today);
+                MessageBox.Show($"{admin1.adminId}");
+            }
+
         }
 
         public add_record(string phone_num)
@@ -117,7 +123,7 @@ namespace MedicalCenter.Windows
                 using (medcentrDB db = new medcentrDB())
                 {
                     date_exist = false;                                        //проверка на существование даты в бд
-                    
+
                     var for_date_id = DateTime.Parse(date_of_record.Text);
 
                     #region  Определение свободного времени по дате                    
@@ -171,7 +177,7 @@ namespace MedicalCenter.Windows
             if (doctors.Text != "")
             {
                 services.Items.Clear();
-                
+
                 using (medcentrDB db = new medcentrDB())
                 {
                     int doc_id = Convert.ToInt32(doctors.Text.Split(' ')[3]);
@@ -203,7 +209,7 @@ namespace MedicalCenter.Windows
                     cost_of_record.Text = $"Итоговая стоимость {ss.Cost} руб.";
                 }
             }
-        }       
+        }
 
         private void create_record_Click(object sender, RoutedEventArgs e)  //создание записи в таблице время, визиты и дата
         {
@@ -232,7 +238,7 @@ namespace MedicalCenter.Windows
                             DateId = date.Id,
                             VisitId = new_visit.Id,
                             Time_in_text = time_of_record.Text,
-                            Id_admin = 1,  //TODO: ИСПРАВИТЬ на admin.Id, ВРЕМЕННОЕ РЕШЕНИЕ
+                            Id_admin = admin.adminId,
                             Id_service = id_service
                         };
                         db.Visits.Add(new_visit);
@@ -264,7 +270,7 @@ namespace MedicalCenter.Windows
 
                         string today = DateTime.Now.DayOfWeek.ToString();
                         string date_to_text = DateTime.Parse(date_of_record.Text).ToShortDateString(); // добавление даты в текстовом формате
-                        
+
                         var new_visit = new Visits()
                         {
                             DoctorId = doctor_id,
@@ -287,7 +293,7 @@ namespace MedicalCenter.Windows
                             DateId = new_date.Id,
                             VisitId = new_visit.Id,
                             Time_in_text = time_of_record.Text,
-                            Id_admin = 1,    //TODO: ИСПРАВИТЬ на admin.Id, ВРЕМЕННОЕ РЕШЕНИЕ
+                            Id_admin = admin.adminId,
                             Id_service = id_service
                         };
 

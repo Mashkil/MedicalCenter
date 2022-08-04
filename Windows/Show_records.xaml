@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MedicalCenter.Windows"
         mc:Ignorable="d"
-        Title="Запись" MinHeight="450" MinWidth="800">
+        Title="Запись" MinHeight="450" MinWidth="800"
+        WindowStartupLocation="CenterScreen" FontSize="14" Width="882"
+        >
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="280"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">

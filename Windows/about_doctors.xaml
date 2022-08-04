@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MedicalCenter.Windows"
         mc:Ignorable="d"
-        Title="Информация о врачах" Height="450" Width="800"        
+        Title="Информация о врачах" MinHeight="450" MinWidth="800"     
+        WindowStartupLocation="CenterScreen"
+        FontSize="15"
         >
     
     <Grid>

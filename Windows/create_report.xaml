@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MedicalCenter.Windows"
         mc:Ignorable="d"
-        Title="Создание отчета" Height="392" Width="638"
+        Title="Создание отчета" MinHeight="390" MinWidth="639"
+        Height="392" Width="640"
+        WindowStartupLocation="CenterScreen"
         FontSize="14"
         >
     <Grid>

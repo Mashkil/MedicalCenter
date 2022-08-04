@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         Title="Добавление администратора" MinHeight="449" MinWidth="471" Height="460" Width="480"
         Closing="Window_Closing"
+        WindowStartupLocation="CenterScreen"
         >
     <Grid>
         <Grid.ColumnDefinitions>

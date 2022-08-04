@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MedicalCenter.Windows"
         mc:Ignorable="d"
         Title="Прием пациента" MinHeight="651" MinWidth="800" Height="660" Width="815"
-        WindowStartupLocation="CenterOwner"
+        WindowStartupLocation="CenterScreen"
         >
     <ScrollViewer>
         <Grid x:Name="gr">
