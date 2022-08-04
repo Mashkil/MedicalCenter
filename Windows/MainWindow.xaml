@@ -6,10 +6,12 @@
         xmlns:local="clr-namespace:MedicalCenter"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"       
-        Title="Medpro" Height="399" Width="474" WindowStyle="SingleBorderWindow"
+        Title="Medpro" MinHeight="399" MinWidth="474" WindowStyle="SingleBorderWindow"
         WindowStartupLocation="CenterScreen"
+        FontSize="15"
+        MaxHeight="410" MaxWidth="485"
         >
-    <Grid Margin="0,0,0,-6">
+    <Grid Margin="0,0,0,0">
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Color="#ccb6e3" Offset="0.0"/>
@@ -27,8 +29,8 @@
                 <TextBox x:Name="login" TextWrapping="NoWrap" Width="168" BorderBrush="Black" Height="32" Margin="3" />
                 <Label Content="Пароль:" RenderTransformOrigin="0.474,0.572" Width="162" Margin="1" />
                 <TextBox x:Name="password" TextWrapping="NoWrap" Width="168" BorderBrush="Black" Height="32" Margin="3"/>
-                <Button x:Name="autorize" Content="Войти" Width="114" Height="32" Click="autorize_Click" Margin="10"/>
-                <Button x:Name="registration" Content="Регистрация нового пользователя" Height="36" Width="278" Margin="10" Style="{DynamicResource MaterialDesignFlatButton}" Click="registration_Click"/>
+                <Button x:Name="autorize" Content="Войти" Width="114" Height="32" Click="autorize_Click" Margin="10" FontSize="15"/>
+                <Button x:Name="registration" Content="Регистрация нового пользователя" Height="36" Width="278" Margin="10" Style="{DynamicResource MaterialDesignFlatButton}" Click="registration_Click" FontSize="15"/>
             </StackPanel>
         </Border>
     </Grid>
