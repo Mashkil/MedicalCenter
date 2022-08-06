@@ -53,7 +53,7 @@ namespace MedicalCenter.Windows
         }
 
         private void find_Click(object sender, RoutedEventArgs e) // поиск записи по дате  
-        { //TODO: НЕ ПОКАЗЫВАЕТ СПИСОК ПАЦИЕНТОВ , ИСПРАВИТЬ
+        { 
             try
             {
                 if (date.Text == "") //при отсутствии даты поиск идет по текущей дате

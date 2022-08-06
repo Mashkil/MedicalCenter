@@ -28,7 +28,8 @@ namespace MedicalCenter
                             {
                                 Date1 = DateTime.Today,
                                 Type_of_day = DateTime.Today.DayOfWeek.ToString(),
-                                Date_in_text = DateTime.Today.ToShortDateString()
+                                Date_in_text = DateTime.Today.ToShortDateString(),
+                                adminId=autirization.Id_admin
                             };
                             db.Date.Add(new_date);
                             db.SaveChanges();

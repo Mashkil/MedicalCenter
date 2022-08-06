@@ -16,8 +16,7 @@ namespace MedicalCenter.Windows
             Select_depart();
             using (medcentrDB db = new medcentrDB())
             {
-                var admin1 = db.Date.FirstOrDefault(p => p.Date1 == DateTime.Today);
-                MessageBox.Show($"{admin1.adminId}");
+                var admin1 = db.Date.FirstOrDefault(p => p.Date1 == DateTime.Today);                
             }
 
         }
