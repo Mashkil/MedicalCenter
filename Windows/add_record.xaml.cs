@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace MedicalCenter.Windows
@@ -16,9 +18,8 @@ namespace MedicalCenter.Windows
             Select_depart();
             using (medcentrDB db = new medcentrDB())
             {
-                var admin1 = db.Date.FirstOrDefault(p => p.Date1 == DateTime.Today);                
+                var admin1 = db.Date.FirstOrDefault(p => p.Date1 == DateTime.Today);
             }
-
         }
 
         public add_record(string phone_num)
@@ -47,21 +48,25 @@ namespace MedicalCenter.Windows
             }
         }
 
-        private void phone_number_LostFocus(object sender, RoutedEventArgs e)   //автозаполнение полей данных пациента
+        private async void phone_number_LostFocus(object sender, RoutedEventArgs e)   //автозаполнение полей данных пациента
         {
             try
             {
+                string g = phone_number.Text;
+               
                 using (medcentrDB db = new medcentrDB())
                 {
-                    Patients pat = db.Patients.FirstOrDefault(p => p.Phone == phone_number.Text);
+                    var pat = await  db.Patients.FirstOrDefaultAsync(p => p.Phone == g);
                     patient_id = pat.Id;
                     name.Text = pat.Firstname;
                     surname.Text = pat.Lastname;
                     patronimyc.Text = pat.Patronymic;
                     DateTime? dd = pat.Date_of_birth;
                     date_of_birth.Text = dd.Value.ToShortDateString();
-                };
+                }
+
             }
+
             catch (NullReferenceException)
             {
                 MessageBox.Show("Пациета с таким номером телефона не существует", "Ошибка", MessageBoxButton.OK);
@@ -192,7 +197,7 @@ namespace MedicalCenter.Windows
             }
         }
 
-        private void services_LostFocus(object sender, RoutedEventArgs e) //заполнение итоговой стоимости
+        private async void services_LostFocus(object sender, RoutedEventArgs e) //заполнение итоговой стоимости
         {
             if (services.Text != "")
             {
@@ -200,17 +205,17 @@ namespace MedicalCenter.Windows
                 {
                     int id_doctr = Convert.ToInt32(doctors.Text.Split(' ')[3]);//выделение id доктора                                      
 
-                    Doctors doc = db.Doctors.FirstOrDefault(p => p.Id == id_doctr);
+                    Doctors doc = await db.Doctors.FirstOrDefaultAsync(p => p.Id == id_doctr);
                     doctor_id = doc.Id;
-
-                    var ss = db.Services.FirstOrDefault(s => s.Id_doc == doctor_id && s.Name_of_service == services.Text);
+                    string serv = services.Text;
+                    var ss = await db.Services.FirstOrDefaultAsync(s => s.Id_doc == doctor_id && s.Name_of_service == serv);
                     id_service = ss.Id;
                     cost_of_record.Text = $"Итоговая стоимость {ss.Cost} руб.";
                 }
             }
         }
 
-        private void create_record_Click(object sender, RoutedEventArgs e)  //создание записи в таблице время, визиты и дата
+        private async void create_record_Click(object sender, RoutedEventArgs e)  //создание записи в таблице время, визиты и дата
         {
             try
             {
@@ -218,10 +223,10 @@ namespace MedicalCenter.Windows
                 {
                     if (date_exist)     //без создания даты в таблице Date
                     {
-                        var admin = db.Date.FirstOrDefault(p => p.Date1 == DateTime.Today); //поиск id админа, который сегодня работает
+                        var admin = await db.Date.FirstOrDefaultAsync(p => p.Date1 == DateTime.Today); //поиск id админа, который сегодня работает
 
                         var for_date_id = DateTime.Parse(date_of_record.Text);
-                        Date date = db.Date.FirstOrDefault(p => p.Date1 == for_date_id);
+                        Date date = await db.Date.FirstOrDefaultAsync(p => p.Date1 == for_date_id);
 
                         var new_visit = new Visits()
                         {
@@ -242,7 +247,7 @@ namespace MedicalCenter.Windows
                         };
                         db.Visits.Add(new_visit);
                         db.Time.Add(new_record);
-                        db.SaveChanges();
+                        await db.SaveChangesAsync();
 
                         if (MessageBox.Show($"Запись успешно создана\nСоздать еще одну запись?", "",
                             MessageBoxButton.YesNo) == MessageBoxResult.Yes)
@@ -265,7 +270,7 @@ namespace MedicalCenter.Windows
                     else  //с созданием даты в таблице Date
                     {
                         open_admin = true;
-                        var admin = db.Date.FirstOrDefault(p => p.Date1 == DateTime.Today); //поиск id админа, который сегодня работает                        
+                        var admin = await db.Date.FirstOrDefaultAsync(p => p.Date1 == DateTime.Today); //поиск id админа, который сегодня работает                        
 
                         string today = DateTime.Now.DayOfWeek.ToString();
                         string date_to_text = DateTime.Parse(date_of_record.Text).ToShortDateString(); // добавление даты в текстовом формате
@@ -299,7 +304,7 @@ namespace MedicalCenter.Windows
                         db.Visits.Add(new_visit);
                         db.Date.Add(new_date);
                         db.Time.Add(new_record);
-                        db.SaveChanges();
+                        await db.SaveChangesAsync();
 
                         if (MessageBox.Show($"Запись успешно создана\nСоздать еще одну запись?", "",
                             MessageBoxButton.YesNo) == MessageBoxResult.Yes)
@@ -334,7 +339,6 @@ namespace MedicalCenter.Windows
                 admin Admin = new admin();
                 Admin.Show();
             }
-
         }
     }
 }

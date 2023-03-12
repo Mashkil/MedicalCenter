@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace MedicalCenter
@@ -12,11 +14,15 @@ namespace MedicalCenter
             InitializeComponent();
         }
 
-        private void autorize_Click(object sender, RoutedEventArgs e)
-        {
+        private async void autorize_Click(object sender, RoutedEventArgs e)
+        {        
+
             using (medcentrDB db = new medcentrDB())
             {
-                var autirization = db.Logins_and_passwords.FirstOrDefault(p => p.Login == login.Text && p.Password == password.Text);
+                string log = login.Text;
+                string pas= password.Text;
+                var autirization = await db.Logins_and_passwords.FirstOrDefaultAsync(p => p.Login == log && p.Password == pas);
+
                 if (autirization != null)
                 {
                     if (autirization.Id_admin != null)
@@ -29,17 +35,16 @@ namespace MedicalCenter
                                 Date1 = DateTime.Today,
                                 Type_of_day = DateTime.Today.DayOfWeek.ToString(),
                                 Date_in_text = DateTime.Today.ToShortDateString(),
-                                adminId=autirization.Id_admin
+                                adminId = autirization.Id_admin
                             };
                             db.Date.Add(new_date);
-                            db.SaveChanges();
+                            await db.SaveChangesAsync();
                         }
                         else
                         {
                             var dat = db.Date.FirstOrDefault(p => p.Date1 == DateTime.Today);
                             dat.adminId = autirization.Id_admin;
-                            MessageBox.Show($"{autirization.Id_admin}");
-                            db.SaveChanges();
+                            await db.SaveChangesAsync();
                         }
 
                         admin admin = new admin();
@@ -57,8 +62,10 @@ namespace MedicalCenter
                 {
                     MessageBox.Show("Вы ввели неправильный логин или пароль!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+
             }
-        }
+        }       
+        
 
         private void registration_Click(object sender, RoutedEventArgs e)
         {

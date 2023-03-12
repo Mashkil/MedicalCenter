@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Windows;
 
@@ -12,11 +13,12 @@ namespace MedicalCenter.Windows
             InitializeComponent();
         }
 
-        private void save_Click(object sender, RoutedEventArgs e)
+        private async void save_Click(object sender, RoutedEventArgs e)
         {
             using (medcentrDB db = new medcentrDB())
             {
-                var log = db.Logins_and_passwords.FirstOrDefault(p => p.Login == login.Text); // проверка на сущевствование такого же логина
+                string log_str = login.Text;
+                var log = await db.Logins_and_passwords.FirstOrDefaultAsync(p => p.Login == log_str); // проверка на сущевствование такого же логина
                 
                 if (log != null)
                 {
@@ -43,7 +45,6 @@ namespace MedicalCenter.Windows
                         MessageBox.Show($"В поле Возраст введены неккоректные данные", "Ошибка",
                             MessageBoxButton.OK, MessageBoxImage.Error);
                     else
-
                     {
                         var admins = new Admins()
                         {
@@ -64,12 +65,11 @@ namespace MedicalCenter.Windows
 
                         db.Admins.Add(admins);
                         db.Logins_and_passwords.Add(log_and_pass);
-                        db.SaveChanges();
+                        await db.SaveChangesAsync();
 
                         if (MessageBox.Show($"Администратор {name.Text} успешно добавлен в систему", "", MessageBoxButton.OK, MessageBoxImage.None) == MessageBoxResult.OK)
                         {
-                            if (App.Current.MainWindow != null)
-                                App.Current.MainWindow.Close();
+                            App.Current.MainWindow?.Close();
 
                             MainWindow main2 = new MainWindow();
                             main2.Show();

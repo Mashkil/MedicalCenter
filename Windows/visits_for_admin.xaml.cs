@@ -66,7 +66,7 @@ namespace MedicalCenter.Windows
                     table.AddCell(new Phrase(fio_doc.Text, font));
                     table.AddCell(new Phrase("Фамилия   -  ", font));
                     table.AddCell(new Phrase(surname.Text, font));
-                    table.AddCell(new Phrase("Специализация   -  ", font));
+                    table.AddCell(new Phrase("Услуга   -  ", font));
                     table.AddCell(new Phrase(service_name.Text, font));
                     table.AddCell(new Phrase("Отчество   -  ", font));
                     table.AddCell(new Phrase(patr.Text, font));
@@ -116,7 +116,7 @@ namespace MedicalCenter.Windows
             catch (Exception t)
             {
                 MessageBox.Show(t.Message);
-                throw;
+                
             }
             
 
