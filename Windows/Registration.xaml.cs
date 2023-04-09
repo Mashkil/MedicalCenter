@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Linq;
+using System.Data.Entity;
 
 namespace MedicalCenter.Windows
 {
@@ -16,13 +16,14 @@ namespace MedicalCenter.Windows
 
         Dictionary<string, int> list_of_services = new Dictionary<string, int>();
 
-        private void save_Click(object sender, RoutedEventArgs e) //сохранение данных в бд
+        private async void save_Click(object sender, RoutedEventArgs e) //сохранение данных в бд
         {
             try
             {
                 using (medcentrDB db = new medcentrDB())
                 {
-                    var log = db.Logins_and_passwords.FirstOrDefault(p => p.Login == login.Text); // проверка на сущевствование такого же логина
+                    string log_txt = login.Text;
+                    var log = await db.Logins_and_passwords.FirstOrDefaultAsync(p => p.Login == log_txt); // проверка на сущевствование такого же логина
 
                     if (log != null)
                     {
@@ -92,7 +93,7 @@ namespace MedicalCenter.Windows
 
                             db.Doctors.Add(doc);
                             db.Logins_and_passwords.Add(log_and_pass);
-                            db.SaveChanges();
+                            await db.SaveChangesAsync();
 
                             if (MessageBox.Show($"Врач {name.Text} успешно добавлен в систему", "", MessageBoxButton.OK, MessageBoxImage.None) == MessageBoxResult.OK)
                             {
