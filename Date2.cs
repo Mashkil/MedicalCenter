@@ -12,10 +12,10 @@ namespace MedicalCenter
     using System;
     using System.Collections.Generic;
     
-    public partial class Date
+    public partial class Date2
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Date()
+        public Date2()
         {
             this.Time = new HashSet<Time>();
         }

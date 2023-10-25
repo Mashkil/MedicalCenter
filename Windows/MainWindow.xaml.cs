@@ -27,10 +27,11 @@ namespace MedicalCenter
                 {
                     if (autirization.Id_admin != null)
                     {
-                        Date date = db.Date.FirstOrDefault(p => p.Date1 == DateTime.Today);
+                        Date2 date = db.Date.FirstOrDefault(p => p.Date1 == DateTime.Today);
+                        
                         if (date == null)
                         {
-                            var new_date = new Date()
+                            var new_date = new Date2()
                             {
                                 Date1 = DateTime.Today,
                                 Type_of_day = DateTime.Today.DayOfWeek.ToString(),

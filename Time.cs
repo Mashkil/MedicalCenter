@@ -25,7 +25,7 @@ namespace MedicalCenter
         public Nullable<int> Id_service { get; set; }
     
         public virtual Admins Admins { get; set; }
-        public virtual Date Date { get; set; }
+        public virtual Date2 Date { get; set; }
         public virtual Doctors Doctors { get; set; }
         public virtual Patients Patients { get; set; }
         public virtual Services Services { get; set; }

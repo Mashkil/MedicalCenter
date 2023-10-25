@@ -145,7 +145,7 @@ namespace MedicalCenter.Windows
 
             using (medcentrDB db = new medcentrDB())
             {
-                Date dd = db.Date.FirstOrDefault(p => p.Date1 == date_);    //получение id даты
+                Date2 dd = db.Date.FirstOrDefault(p => p.Date1 == date_);    //получение id даты
                 date_id = dd.Id;
             }
 

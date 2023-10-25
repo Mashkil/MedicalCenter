@@ -131,7 +131,7 @@ namespace MedicalCenter.Windows
                     var for_date_id = DateTime.Parse(date_of_record.Text);
 
                     #region  Определение свободного времени по дате                    
-                    Date date = db.Date.FirstOrDefault(p => p.Date1 == for_date_id);
+                    Date2 date = db.Date.FirstOrDefault(p => p.Date1 == for_date_id);
                     List<Time> time_for_record = new List<Time>();
 
                     if (date != null)
@@ -226,7 +226,7 @@ namespace MedicalCenter.Windows
                         var admin = await db.Date.FirstOrDefaultAsync(p => p.Date1 == DateTime.Today); //поиск id админа, который сегодня работает
 
                         var for_date_id = DateTime.Parse(date_of_record.Text);
-                        Date date = await db.Date.FirstOrDefaultAsync(p => p.Date1 == for_date_id);
+                        Date2 date = await db.Date.FirstOrDefaultAsync(p => p.Date1 == for_date_id);
 
                         var new_visit = new Visits()
                         {
@@ -282,7 +282,7 @@ namespace MedicalCenter.Windows
                             Id_service = id_service
                         };
 
-                        var new_date = new Date()
+                        var new_date = new Date2()
                         {
                             Date1 = DateTime.Parse(date_of_record.Text),
                             Type_of_day = today,

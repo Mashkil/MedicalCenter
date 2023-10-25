@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="6b2c438722af4568abddd89dd6eab077" Name="Diagram1">
         <EntityTypeShape EntityType="medcentrModel.Admins" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="medcentrModel.Date" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="medcentrModel.Date2" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="medcentrModel.Doctors" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="medcentrModel.Logins_and_passwords" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="medcentrModel.Patients" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
